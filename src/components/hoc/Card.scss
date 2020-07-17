@@ -1,0 +1,16 @@
+@import '../../styles/variables/variables.scss';
+
+.card {
+	&-container {
+		display: flex;
+		border: 1px solid $light-gray;
+		box-shadow: 2px 2px 2px 2px $dark-grey;
+		flex-flow: column wrap;
+		flex: 1 1 100%;
+		max-width: 250px;
+	}
+
+	&-items {
+		padding: 20px;
+	}
+}
