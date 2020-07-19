@@ -1,45 +1,132 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Selector from './selector/Selector';
 import Card from '../hoc/Card';
+import TypeAheadSelect from '../hoc/TypeAheadSelect';
+import CountrywiseView from './countrywiseview/CountrywiseView';
 
 import {
 	getDefaultCountry,
 	getOverallData,
 } from '../../redux/actions/OverallDataAction';
+import {
+	getAllCountriesData,
+	updateSelectedCountry,
+	updateSelectedCountryData,
+} from '../../redux/actions/CountriesAction';
+import Utils from '../../utils/Utils';
 
 class Content extends Component {
 	componentDidMount() {
 		this.props.getUserCountry();
 		this.props.getOverallData();
+		this.props.getAllCountriesData();
 	}
 
+	handleChange = (e, val) => {
+		this.props.updateCountrySelection(val);
+		this.updateSelectedCountryData(val);
+	};
+
+	updateSelectedCountryData = (val) => {
+		this.props.updateSelectedCountryData(
+			Utils.getSelectedCountryInfo(this.props.allCountriesData, val)
+		);
+	};
+
 	render() {
-		const overallDataCards =
-			this.props && this.props.overallData ? (
-				Object.keys(this.props.overallData).map((key, idx) =>
-					key === 'confirmed' ||
-					key === 'recovered' ||
-					key === 'deaths' ? (
+		const {
+			overallData = null,
+			allCountries,
+			allCountriesData,
+		} = this.props;
+		const overallDataCards = overallData ? (
+			Object.keys(overallData).map((key) => {
+				if (key === 'cases') {
+					return (
 						<Card
-							key={this.props.overallData[key].detail}
+							key={key}
 							cardKey={key}
-							cardValue={this.props.overallData[key].value}
+							cardValue={overallData[key]}
+							cardSubKey={'Today cases'}
+							cardSubValue={overallData.todayCases}
 						/>
-					) : (
-						''
-					)
-				)
-			) : (
-				<h5>Loading...</h5>
-			);
+					);
+				}
+				if (key === 'active') {
+					return (
+						<Card
+							key={key}
+							cardKey={key}
+							cardValue={overallData[key]}
+							cardSubKey={'Critical cases'}
+							cardSubValue={overallData.critical}
+						/>
+					);
+				}
+				if (key === 'recovered') {
+					return (
+						<Card
+							key={key}
+							cardKey={key}
+							cardValue={overallData[key]}
+							cardSubKey={'Recovered today'}
+							cardSubValue={overallData.todayRecovered}
+						/>
+					);
+				}
+				if (key === 'deaths') {
+					return (
+						<Card
+							key={key}
+							cardKey={key}
+							cardValue={overallData[key]}
+							cardSubKey={'Deaths today'}
+							cardSubValue={overallData.todayDeaths}
+						/>
+					);
+				}
+				return false;
+			})
+		) : (
+			<>Error fetching data, kindly try after sometime.</>
+		);
 		return (
-			<>
-				<div>Worldwide data</div>
-				{overallDataCards}
-				<Selector defaultCountry={this.props.defaultCountry} />
-			</>
+			<div className='content-overall-container'>
+				<div className='content-overall-header'>
+					<span className='content-overall-header-lua-text'>
+						Last updated at{' '}
+					</span>
+					{overallData.updated
+						? Utils.formatDate(new Date(overallData.updated))
+						: ''}
+				</div>
+				<div className='content-overall-card-container'>
+					{overallDataCards}
+				</div>
+				{allCountriesData.length > 0 ? (
+					<>
+						<TypeAheadSelect
+							allCountriesData={allCountriesData}
+							allCountries={allCountries}
+							getSelectedCountry={(e, val) =>
+								this.handleChange(e, val)
+							}
+						/>
+					</>
+				) : (
+					''
+				)}
+				{this.props.countrywiseData.length > 0 ? (
+					<>
+						<CountrywiseView
+							countryData={this.props.countrywiseData}
+						/>
+					</>
+				) : (
+					''
+				)}
+			</div>
 		);
 	}
 }
@@ -48,6 +135,9 @@ const mapStateToProps = (state) => {
 	return {
 		defaultCountry: state.apiDataList.defaultCountry,
 		overallData: state.apiDataList.overallData,
+		allCountriesData: state.countries.allCountriesData,
+		allCountries: state.countries.allCountries,
+		countrywiseData: state.countries.countrywiseData,
 	};
 };
 
@@ -58,6 +148,15 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		getOverallData: () => {
 			dispatch(getOverallData);
+		},
+		getAllCountriesData: () => {
+			dispatch(getAllCountriesData);
+		},
+		updateCountrySelection: (val) => {
+			dispatch(updateSelectedCountry(val));
+		},
+		updateSelectedCountryData: (val) => {
+			dispatch(updateSelectedCountryData(val));
 		},
 	};
 };

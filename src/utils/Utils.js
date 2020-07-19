@@ -17,6 +17,24 @@ class Utils {
 		};
 		return new Intl.DateTimeFormat(locale, options).format(date);
 	}
+
+	static extractCountriesInfo(allCountriesData) {
+		let allCountries = allCountriesData.map((country) => {
+			return {
+				country: country.country,
+				countryInfo: country.countryInfo,
+			};
+		});
+
+		return allCountries;
+	}
+
+	static getSelectedCountryInfo(allCountriesData, selectedCountry) {
+		let selectedCountryInfo = allCountriesData.filter(
+			(country) => country.country === selectedCountry
+		);
+		return selectedCountryInfo;
+	}
 }
 
 export default Utils;

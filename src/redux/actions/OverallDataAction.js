@@ -15,7 +15,7 @@ export const getDefaultCountry = async (dispatch) => {
 
 export const getOverallData = async (dispatch) => {
 	const config = {
-		url: apis.defaultApiUri,
+		url: `${apis.defaultApiUri}${apis.globalUri}`,
 	};
 	const overallData = await getData(config);
 	dispatch({

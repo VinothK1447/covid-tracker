@@ -1,0 +1,42 @@
+.content {
+	&-overall {
+		&-container {
+			display: flex;
+			justify-content: center;
+			flex-flow: column nowrap;
+			flex: 1;
+			align-items: center;
+		}
+
+		&-header {
+			font-size: 1.25rem;
+			font-weight: 600;
+			padding: 20px;
+			display: flex;
+			width: 100%;
+			flex: 1 0 100%;
+			justify-content: flex-end;
+			font-style: italic;
+
+			&-lua-text {
+				display: inline-block;
+				margin: 3px 10px;
+				color: $mid-gray;
+			}
+		}
+
+		&-card-container {
+			margin: 10px;
+			display: flex;
+			flex-flow: row wrap;
+			flex: 1 1 100%;
+			width: 100%;
+			justify-content: space-evenly;
+			padding: 20px;
+
+			@media screen and (max-width: 375px) {
+				flex-flow: column wrap;
+			}
+		}
+	}
+}

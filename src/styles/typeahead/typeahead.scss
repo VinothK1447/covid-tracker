@@ -1,0 +1,45 @@
+@import '../../styles/variables/variables.scss';
+
+.typeahead {
+	&-container {
+		display: flex;
+		width: 90%;
+		flex-flow: column nowrap;
+		margin: 0 0 20px 0;
+	}
+
+	&-input {
+		padding: 10px;
+		border: 1px solid transparent;
+		border-radius: 10px;
+		width: 100%;
+		outline: none;
+	}
+
+	&-list {
+		list-style-type: none;
+		border-top: none;
+		border-left: 1px solid $dark-grey;
+		border-right: 1px solid $dark-grey;
+		border-bottom: 1px solid $dark-grey;
+		border-bottom-left-radius: 5px;
+		border-bottom-right-radius: 5px;
+		border-top-left-radius: 5px;
+		border-top-right-radius: 5px;
+		padding: 10px;
+	}
+
+	&-list-item {
+		font-weight: 500;
+		padding: 10px 0;
+		cursor: pointer;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid $dark-grey;
+		}
+
+		&:hover {
+			font-weight: 600;
+		}
+	}
+}

@@ -7,3 +7,13 @@
 	margin: 0;
 	padding: 0;
 }
+
+body {
+	background: $light-gray;
+}
+
+@import './header/header.scss';
+@import './content/content.scss';
+@import './card/card.scss';
+@import './loader/loader.scss';
+@import './typeahead/typeahead.scss';

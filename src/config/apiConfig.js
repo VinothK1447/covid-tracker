@@ -1,10 +1,9 @@
 const apis = {
 	defaultCountryUri: 'http://ip-api.com/json',
-	defaultApiUri: 'https://covid19.mathdro.id/api',
-	allCountriesUri: '/countries',
-	confirmedUri: '/confirmed',
-	recoveredUri: '/recovered',
-	deaths: '/deaths',
+	globalUri: '/all',
+	countriesUri: '/countries',
+	continentsUri: '/recovered',
+	defaultApiUri: 'https://disease.sh/v3/covid-19',
 };
 
 export default apis;
