@@ -15,6 +15,7 @@ import {
 	updateSelectedCountryData,
 } from '../../redux/actions/CountriesAction';
 import Utils from '../../utils/Utils';
+import strings from '../../config/strings';
 
 class Content extends Component {
 	componentDidMount() {
@@ -95,7 +96,7 @@ class Content extends Component {
 			<div className='content-overall-container'>
 				<div className='content-overall-header'>
 					<span className='content-overall-header-lua-text'>
-						Last updated at{' '}
+						{strings.en['lastUpdated']}
 					</span>
 					{overallData.updated
 						? Utils.formatDate(new Date(overallData.updated))

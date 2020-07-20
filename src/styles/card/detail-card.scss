@@ -1,0 +1,79 @@
+@import '../../styles/variables/variables.scss';
+
+.detail-card {
+	padding: 20px;
+	min-width: 350px;
+	border-radius: 10px;
+	text-transform: capitalize;
+	font-weight: 600;
+	border-bottom-width: 5px;
+	border-right-width: 5px;
+	border-top-width: 2px;
+	border-left-width: 2px;
+	border-style: solid;
+	text-align: center;
+	margin: 20px;
+
+	&-container {
+		display: flex;
+		flex: 0 0 100%;
+		flex-flow: row wrap;
+		justify-content: center;
+	}
+
+	&-generic {
+		border-bottom-color: $border-purple;
+		border-right-color: $border-purple;
+		border-top-color: $border-purple;
+		border-left-color: $border-purple;
+		box-shadow: 3px 3px 5px 3px $shadow-purple;
+		color: $border-purple;
+	}
+
+	&-cases {
+		border-bottom-color: $border-blue;
+		border-right-color: $border-blue;
+		border-top-color: $border-blue;
+		border-left-color: $border-blue;
+		box-shadow: 3px 3px 5px 3px $shadow-blue;
+		color: $border-blue;
+	}
+
+	&-recovered {
+		border-bottom-color: $border-green;
+		border-right-color: $border-green;
+		border-top-color: $border-green;
+		border-left-color: $border-green;
+		box-shadow: 3px 3px 5px 3px $shadow-green;
+		color: $border-green;
+	}
+
+	&-active {
+		border-bottom-color: $border-red;
+		border-right-color: $border-red;
+		border-top-color: $border-red;
+		border-left-color: $border-red;
+		box-shadow: 3px 3px 5px 3px $shadow-red;
+		color: $border-red;
+	}
+
+	&-deaths {
+		border-bottom-color: $border-gray;
+		border-right-color: $border-gray;
+		border-top-color: $border-gray;
+		border-left-color: $border-gray;
+		box-shadow: 3px 3px 5px 3px $shadow-gray;
+		color: $border-gray;
+	}
+
+	&-header {
+		color: lighten($border-gray, 25%);
+		line-height: 2rem;
+	}
+
+	&-counters,
+	&-counters span {
+		font-size: 2rem;
+		text-shadow: 3px 3px 3px $text-shadow;
+	}
+}

@@ -23,6 +23,9 @@ class TypeAheadSelect extends Component {
 			});
 			this.setState({ filteredCountries: filteredSuggestions });
 		}
+		if (val.length < 3) {
+			this.setState({ filteredCountries: [] });
+		}
 	};
 
 	updateCountrySelection = (e) => {
