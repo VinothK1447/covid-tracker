@@ -22,6 +22,7 @@ const strings = {
 		activePerOneMillion: 'Active cases/Million',
 		critical: 'Critical cases',
 		criticalPerOneMillion: 'Critical cases/Million',
+		datasource: 'Data sources - disease.sh and api.covid19india.org',
 	},
 };
 export default strings;

@@ -1,0 +1,16 @@
+footer {
+	div {
+		text-align: center;
+		cursor: pointer;
+		span {
+			display: inline-block;
+			width: 25px;
+			height: 25px;
+			margin: 10px;
+			svg {
+				height: 20px;
+				width: 20px;
+			}
+		}
+	}
+}
