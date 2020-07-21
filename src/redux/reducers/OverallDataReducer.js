@@ -6,8 +6,6 @@ const initialState = {
 };
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case actionTypes.UPDATE_DEFAULT_COUNTRY:
-			return { ...state, defaultCountry: action.payload };
 		case actionTypes.GET_OVERALL_DATA:
 			return { ...state, overallData: action.payload };
 		default:

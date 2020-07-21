@@ -5,10 +5,7 @@ import Card from '../hoc/Card';
 import TypeAheadSelect from '../hoc/TypeAheadSelect';
 import CountrywiseView from './countrywiseview/CountrywiseView';
 
-import {
-	getDefaultCountry,
-	getOverallData,
-} from '../../redux/actions/OverallDataAction';
+import { getOverallData } from '../../redux/actions/OverallDataAction';
 import {
 	getAllCountriesData,
 	updateSelectedCountry,
@@ -19,7 +16,6 @@ import strings from '../../config/strings';
 
 class Content extends Component {
 	componentDidMount() {
-		this.props.getUserCountry();
 		this.props.getOverallData();
 		this.props.getAllCountriesData();
 	}
@@ -134,7 +130,6 @@ class Content extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		defaultCountry: state.apiDataList.defaultCountry,
 		overallData: state.apiDataList.overallData,
 		allCountriesData: state.countries.allCountriesData,
 		allCountries: state.countries.allCountries,
@@ -144,9 +139,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
 	return {
-		getUserCountry: () => {
-			dispatch(getDefaultCountry);
-		},
 		getOverallData: () => {
 			dispatch(getOverallData);
 		},

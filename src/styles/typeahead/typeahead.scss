@@ -19,7 +19,10 @@
 		outline: none;
 		border-radius: 10px;
 
-		@media screen and (max-width: 375px) {
+		@media only screen and (max-width: 375px) {
+			width: 90%;
+		}
+		@media only screen and (min-width: 375px) and (max-width: 768px) {
 			width: 90%;
 		}
 	}
