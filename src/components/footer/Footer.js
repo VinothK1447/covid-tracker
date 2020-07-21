@@ -9,14 +9,14 @@ class Footer extends Component {
 		return (
 			<footer>
 				<div>
+					<span data-tip={strings.en.datasource}>
+						<Source />
+						<ReactTooltip />
+					</span>
 					<span>
 						<a href='mailto:covidtrackerinfo@gmail.com'>
 							<Contact />
 						</a>
-					</span>
-					<span data-tip={strings.en.datasource}>
-						<Source />
-						<ReactTooltip />
 					</span>
 				</div>
 			</footer>
