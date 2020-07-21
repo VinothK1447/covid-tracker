@@ -17,6 +17,7 @@
 			flex: 1 0 100%;
 			justify-content: flex-end;
 			font-style: italic;
+			flex-flow: row wrap;
 
 			&-lua-text {
 				display: inline-block;

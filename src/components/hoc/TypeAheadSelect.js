@@ -9,11 +9,20 @@ class TypeAheadSelect extends Component {
 		};
 		this.selectOnTypeRef = React.createRef();
 		this.listingRef = React.createRef();
+		this.clearElemRef = React.createRef();
 	}
 
 	filterCountries = (e) => {
 		let filteredSuggestions;
 		let val = e.target.value;
+		if (val && this.clearElemRef.current.classList.contains('hide')) {
+			this.clearElemRef.current.classList.remove('hide');
+			this.clearElemRef.current.classList.add('show');
+		}
+		if (!val && this.clearElemRef.current.classList.contains('show')) {
+			this.clearElemRef.current.classList.remove('show');
+			this.clearElemRef.current.classList.add('hide');
+		}
 		if (val.length >= 3) {
 			filteredSuggestions = this.props.allCountries.filter((country) => {
 				return (
@@ -24,8 +33,17 @@ class TypeAheadSelect extends Component {
 			this.setState({ filteredCountries: filteredSuggestions });
 		}
 		if (val.length < 3) {
+			this.props.getSelectedCountry(e, '');
 			this.setState({ filteredCountries: [] });
 		}
+	};
+
+	clearInput = (e) => {
+		this.selectOnTypeRef.current.value = '';
+		this.props.getSelectedCountry(e, '');
+		this.setState({ filteredCountries: [] });
+		this.clearElemRef.current.classList.remove('show');
+		this.clearElemRef.current.classList.add('hide');
 	};
 
 	updateCountrySelection = (e) => {
@@ -64,15 +82,24 @@ class TypeAheadSelect extends Component {
 		return (
 			<>
 				<div className='typeahead-container'>
-					<input
-						type='text'
-						name='selectOnType'
-						ref={this.selectOnTypeRef}
-						autoComplete='off'
-						placeholder='Type country name to filter....'
-						className='typeahead-input'
-						onChange={this.filterCountries}
-					/>
+					<span className='input-container'>
+						<input
+							type='text'
+							name='selectOnType'
+							ref={this.selectOnTypeRef}
+							autoComplete='off'
+							placeholder='Filter by country...'
+							className='typeahead-input'
+							onChange={this.filterCountries}
+						/>
+						<span
+							className='clear-input hide'
+							ref={this.clearElemRef}
+							onClick={this.clearInput}
+						>
+							x
+						</span>
+					</span>
 					{suggestionList}
 				</div>
 			</>
