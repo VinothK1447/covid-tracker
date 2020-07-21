@@ -2,10 +2,10 @@
 	"name": "covid-tracker",
 	"version": "1.0.0",
 	"description": "COVID-19 tracker",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
-		"start": "node index.js",
-		"server": "nodemon index.js",
+		"start": "node server.js",
+		"server": "nodemon server.js",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
