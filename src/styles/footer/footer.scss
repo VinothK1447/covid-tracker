@@ -1,9 +1,10 @@
 footer {
-	position: fixed;
+	position: sticky;
 	bottom: 0;
-	right: 0;
+	background: $light-gray;
+	opacity: 0.8;
 	div {
-		text-align: center;
+		text-align: right;
 		cursor: pointer;
 		span {
 			display: inline-block;

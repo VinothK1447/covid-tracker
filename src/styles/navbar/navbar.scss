@@ -1,0 +1,36 @@
+@import './variables/variables.scss';
+
+.nav-bar {
+	display: flex;
+	flex-flow: row nowrap;
+	text-align: center;
+	height: 30px;
+	align-items: center;
+	@media only screen and (min-width: 375px) and (max-width: 768px) {
+		flex-flow: column nowrap;
+	}
+
+	&-left {
+		width: 50%;
+		@media only screen and (min-width: 375px) and (max-width: 768px) {
+			width: 100%;
+		}
+	}
+
+	&-right {
+		width: 50%;
+		@media only screen and (min-width: 375px) and (max-width: 768px) {
+			width: 100%;
+		}
+	}
+
+	a,
+	a:visited,
+	a:hover,
+	a:link,
+	a:active {
+		text-decoration: none;
+		color: $border-blue;
+		font-weight: 600;
+	}
+}

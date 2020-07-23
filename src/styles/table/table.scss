@@ -1,0 +1,36 @@
+.table {
+	display: table;
+	text-align: center;
+	border-collapse: collapse;
+	margin: 10px;
+
+	&-half {
+		width: 50%;
+	}
+
+	&-row {
+		display: table-row;
+
+		&:nth-child(odd) {
+			background: $lightest-grey;
+		}
+	}
+
+	&-header {
+		display: table-header-group;
+		background: #000;
+		color: #fff;
+	}
+
+	&-head,
+	&-cell {
+		display: table-cell;
+		padding: 10px;
+		text-align: left;
+		vertical-align: middle;
+	}
+
+	&-info {
+		margin: 10px;
+	}
+}

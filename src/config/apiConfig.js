@@ -1,9 +1,11 @@
 const apis = {
+	defaultApiUri: '//disease.sh/v3/covid-19',
 	globalUri: '/all',
 	countriesUri: '/countries',
 	continentsUri: '/continents',
-	defaultApiUri: '//disease.sh/v3/covid-19',
-	indiaStateDistrictUri: '//api.covid19india.org/state_district_wise.json',
+	usaStatesUri: '/states',
+	defaultIndiaDataUri: '//api.covid19india.org/v4',
+	indiaAllDataUri: '/data.json',
 };
 
 export default apis;

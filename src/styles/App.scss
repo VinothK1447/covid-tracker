@@ -23,6 +23,46 @@ body {
 	visibility: hidden;
 }
 
+.info-icon {
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	border-radius: 50%;
+	font-size: 12px;
+	text-align: center;
+	font-weight: 600;
+	padding: 0;
+	color: $clear-white;
+	background: $dark-grey;
+	&::after {
+		content: 'i';
+	}
+}
+
+.up {
+	&:before {
+		content: '\2191';
+	}
+}
+
+.down {
+	&:before {
+		content: '\2193';
+	}
+}
+
+.confirmed {
+	color: $border-red;
+}
+
+.recovered {
+	color: $border-green;
+}
+
+.deceased {
+	color: $dark-grey;
+}
+
 @import './header/header.scss';
 @import './footer/footer.scss';
 @import './content/content.scss';
@@ -30,3 +70,17 @@ body {
 @import './card/detail-card.scss';
 @import './loader/loader.scss';
 @import './typeahead/typeahead.scss';
+@import './navbar/navbar.scss';
+@import './table/table.scss';
+
+.__react_component_tooltip {
+	max-width: 250px;
+	text-align: left !important;
+	font-size: 12px !important;
+	border-radius: 10px !important;
+}
+
+.__react_component_tooltip .multi-line {
+	text-align: left !important;
+	font-size: 12px !important;
+}

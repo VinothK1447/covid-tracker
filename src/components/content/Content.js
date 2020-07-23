@@ -98,6 +98,7 @@ class Content extends Component {
 						? Utils.formatDate(new Date(overallData.updated))
 						: ''}
 				</div>
+				<div>Worldwide data</div>
 				<div className='content-overall-card-container'>
 					{overallDataCards}
 				</div>

@@ -1,3 +1,4 @@
+import { indiaStateCodeMap } from './StateCodeMap';
 class Utils {
 	static formatNumber(number) {
 		let locale = navigator.language;
@@ -34,6 +35,35 @@ class Utils {
 			(country) => country.country === selectedCountry
 		);
 		return selectedCountryInfo;
+	}
+
+	static appendNormalizedBasicInfo(data) {
+		Object.keys(data).map((key) => {
+			if (indiaStateCodeMap.hasOwnProperty(key)) {
+				data[key] = Object.assign(data[key], indiaStateCodeMap[key]);
+				if (data[key].total) {
+					let totals = data[key].total;
+					let {
+						recovered = 0,
+						confirmed = 0,
+						migrated = 0,
+						deceased = 0,
+					} = totals;
+					let active = confirmed - (recovered + migrated + deceased);
+					data[key].total = Object.assign(data[key].total, {
+						active: active,
+					});
+				}
+				if (data[key].meta && data[key].meta.notes) {
+					data[key].meta.notes = data[key].meta.notes.replace(
+						/\n/g,
+						'<br />'
+					);
+				}
+			}
+			return false;
+		});
+		return data;
 	}
 }
 

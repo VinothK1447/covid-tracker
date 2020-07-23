@@ -1,7 +1,6 @@
 import actionTypes from '../actions/actionTypes';
 
 const initialState = {
-	defaultCountry: '',
 	overallData: {},
 };
 export default (state = initialState, action) => {
