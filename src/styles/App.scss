@@ -84,3 +84,17 @@ body {
 	text-align: left !important;
 	font-size: 12px !important;
 }
+
+.container {
+	display: flex;
+	flex-flow: row wrap;
+	flex: 0 0 100%;
+	width: 100%;
+
+	@media screen and (max-width: 375px) {
+		flex-flow: column nowrap;
+	}
+	@media screen and (min-width: 375px) and (max-width: 768px) {
+		flex-flow: column nowrap;
+	}
+}

@@ -8,116 +8,41 @@ function DetailDataDisplay(props) {
 	let frameHeader = frameHeaderMarkup(country);
 	return (
 		<>
-			<div className='table-info'>* {strings.en['*']}</div>
-			<div className='table-wrapper'>
-				<div className='table'>
-					{frameHeader}
-					{country &&
-					country.toLowerCase() === 'india' &&
-					Object.keys(dataObj).length ? (
-						<>
-							<div className='table-row' key={'ind-total'}>
-								<div className='table-cell state-cell'>
-									{dataObj['TT'].stateName}
-								</div>
-								<div className='table-cell other-cell'>
-									{dataObj['TT'].total.confirmed
-										? dataObj['TT'].total.confirmed
-										: 0}{' '}
-									{dataObj['TT'].delta &&
-									dataObj['TT'].delta.confirmed ? (
-										dataObj['TT'].delta.confirmed ? (
-											<span className='up confirmed'>
-												{dataObj['TT'].delta.confirmed}
-											</span>
-										) : (
-											<span className='down confirmed'>
-												{dataObj['TT'].delta.confirmed}
-											</span>
-										)
-									) : (
-										''
-									)}
-								</div>
-								<div className='table-cell'>
-									{dataObj['TT'].total.active}
-								</div>
-								<div className='table-cell'>
-									{dataObj['TT'].total.recovered
-										? dataObj['TT'].total.recovered
-										: 0}{' '}
-									{dataObj['TT'].delta &&
-									dataObj['TT'].delta.recovered ? (
-										dataObj['TT'].delta.recovered ? (
-											<span className='up recovered'>
-												{dataObj['TT'].delta.recovered}
-											</span>
-										) : (
-											<span className='down recovered'>
-												{dataObj['TT'].delta.recovered}
-											</span>
-										)
-									) : (
-										''
-									)}
-								</div>
-								<div className='table-cell'>
-									{dataObj['TT'].total.deceased
-										? dataObj['TT'].total.deceased
-										: 0}{' '}
-									{dataObj['TT'].delta &&
-									dataObj['TT'].delta.deceased ? (
-										dataObj['TT'].delta.deceased ? (
-											<span className='up deceased'>
-												{dataObj['TT'].delta.deceased}
-											</span>
-										) : (
-											<span className='down deceased'>
-												{dataObj['TT'].delta.deceased}
-											</span>
-										)
-									) : (
-										''
-									)}
-								</div>
-							</div>
-
-							{Object.keys(dataObj).map((arr, idx) => {
-								return arr !== 'TT' ? (
-									<div className='table-row' key={idx}>
+			<div className='container'>
+				<div className='container-left'>
+					<div className='table-info'>* {strings.en['*']}</div>
+					<div className='table-wrapper'>
+						<div className='table'>
+							{frameHeader}
+							{country &&
+							country.toLowerCase() === 'india' &&
+							Object.keys(dataObj).length ? (
+								<>
+									<div
+										className='table-row'
+										key={'ind-total'}
+									>
 										<div className='table-cell state-cell'>
-											{dataObj[arr].stateName}{' '}
-											{dataObj[arr].meta.notes ? (
-												<span
-													data-tip={
-														dataObj[arr].meta.notes
-													}
-													data-multiline={true}
-													className='info-icon'
-												>
-													<ReactTooltip />
-												</span>
-											) : (
-												''
-											)}
+											{dataObj['TT'].stateName}
 										</div>
-										<div className='table-cell'>
-											{dataObj[arr].total.confirmed
-												? dataObj[arr].total.confirmed
+										<div className='table-cell other-cell'>
+											{dataObj['TT'].total.confirmed
+												? dataObj['TT'].total.confirmed
 												: 0}{' '}
-											{dataObj[arr].delta &&
-											dataObj[arr].delta.confirmed ? (
-												dataObj[arr].delta.confirmed ? (
+											{dataObj['TT'].delta &&
+											dataObj['TT'].delta.confirmed ? (
+												dataObj['TT'].delta
+													.confirmed ? (
 													<span className='up confirmed'>
 														{
-															dataObj[arr].delta
+															dataObj['TT'].delta
 																.confirmed
 														}
 													</span>
 												) : (
 													<span className='down confirmed'>
 														{
-															dataObj[arr].delta
+															dataObj['TT'].delta
 																.confirmed
 														}
 													</span>
@@ -127,25 +52,26 @@ function DetailDataDisplay(props) {
 											)}
 										</div>
 										<div className='table-cell'>
-											{dataObj[arr].total.active}
+											{dataObj['TT'].total.active}
 										</div>
 										<div className='table-cell'>
-											{dataObj[arr].total.recovered
-												? dataObj[arr].total.recovered
+											{dataObj['TT'].total.recovered
+												? dataObj['TT'].total.recovered
 												: 0}{' '}
-											{dataObj[arr].delta &&
-											dataObj[arr].delta.recovered ? (
-												dataObj[arr].delta.recovered ? (
+											{dataObj['TT'].delta &&
+											dataObj['TT'].delta.recovered ? (
+												dataObj['TT'].delta
+													.recovered ? (
 													<span className='up recovered'>
 														{
-															dataObj[arr].delta
+															dataObj['TT'].delta
 																.recovered
 														}
 													</span>
 												) : (
 													<span className='down recovered'>
 														{
-															dataObj[arr].delta
+															dataObj['TT'].delta
 																.recovered
 														}
 													</span>
@@ -155,22 +81,22 @@ function DetailDataDisplay(props) {
 											)}
 										</div>
 										<div className='table-cell'>
-											{dataObj[arr].total.deceased
-												? dataObj[arr].total.deceased
+											{dataObj['TT'].total.deceased
+												? dataObj['TT'].total.deceased
 												: 0}{' '}
-											{dataObj[arr].delta &&
-											dataObj[arr].delta.deceased ? (
-												dataObj[arr].delta.deceased ? (
+											{dataObj['TT'].delta &&
+											dataObj['TT'].delta.deceased ? (
+												dataObj['TT'].delta.deceased ? (
 													<span className='up deceased'>
 														{
-															dataObj[arr].delta
+															dataObj['TT'].delta
 																.deceased
 														}
 													</span>
 												) : (
 													<span className='down deceased'>
 														{
-															dataObj[arr].delta
+															dataObj['TT'].delta
 																.deceased
 														}
 													</span>
@@ -180,63 +106,197 @@ function DetailDataDisplay(props) {
 											)}
 										</div>
 									</div>
-								) : (
-									''
-								);
-							})}
-						</>
-					) : (
-						<>
-							{dataObj.map((arr, idx) => {
-								return (
-									<div className='table-row' key={idx}>
-										<div className='table-cell'>
-											{arr.state}
-										</div>
-										<div className='table-cell'>
-											{arr.cases ? arr.cases : 0}{' '}
-											{arr.todayCases ? (
-												arr.todayCases ? (
-													<span className='up confirmed'>
-														{arr.todayCases}
-													</span>
-												) : (
-													<span className='down confirmed'>
-														{arr.todayCases}
-													</span>
-												)
-											) : (
-												''
-											)}
-										</div>
-										<div className='table-cell'>
-											{arr.active}
-										</div>
-										<div className='table-cell'>
-											{arr.deaths ? arr.deaths : 0}{' '}
-											{arr.todayDeaths ? (
-												arr.todayDeaths ? (
-													<span className='up recovered'>
-														{arr.todayDeaths}
-													</span>
-												) : (
-													<span className='down recovered'>
-														{arr.todayDeaths}
-													</span>
-												)
-											) : (
-												''
-											)}
-										</div>
-										<div className='table-cell'>
-											{arr.tests ? arr.tests : 0}
-										</div>
-									</div>
-								);
-							})}
-						</>
-					)}
+
+									{Object.keys(dataObj).map((arr, idx) => {
+										return arr !== 'TT' ? (
+											<div
+												className='table-row'
+												key={idx}
+											>
+												<div className='table-cell state-cell'>
+													{dataObj[arr].stateName}{' '}
+													{dataObj[arr].meta.notes ? (
+														<span
+															data-tip={
+																dataObj[arr]
+																	.meta.notes
+															}
+															data-multiline={
+																true
+															}
+															className='info-icon'
+														>
+															<ReactTooltip />
+														</span>
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{dataObj[arr].total
+														.confirmed
+														? dataObj[arr].total
+																.confirmed
+														: 0}{' '}
+													{dataObj[arr].delta &&
+													dataObj[arr].delta
+														.confirmed ? (
+														dataObj[arr].delta
+															.confirmed ? (
+															<span className='up confirmed'>
+																{
+																	dataObj[arr]
+																		.delta
+																		.confirmed
+																}
+															</span>
+														) : (
+															<span className='down confirmed'>
+																{
+																	dataObj[arr]
+																		.delta
+																		.confirmed
+																}
+															</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{dataObj[arr].total.active}
+												</div>
+												<div className='table-cell'>
+													{dataObj[arr].total
+														.recovered
+														? dataObj[arr].total
+																.recovered
+														: 0}{' '}
+													{dataObj[arr].delta &&
+													dataObj[arr].delta
+														.recovered ? (
+														dataObj[arr].delta
+															.recovered ? (
+															<span className='up recovered'>
+																{
+																	dataObj[arr]
+																		.delta
+																		.recovered
+																}
+															</span>
+														) : (
+															<span className='down recovered'>
+																{
+																	dataObj[arr]
+																		.delta
+																		.recovered
+																}
+															</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{dataObj[arr].total.deceased
+														? dataObj[arr].total
+																.deceased
+														: 0}{' '}
+													{dataObj[arr].delta &&
+													dataObj[arr].delta
+														.deceased ? (
+														dataObj[arr].delta
+															.deceased ? (
+															<span className='up deceased'>
+																{
+																	dataObj[arr]
+																		.delta
+																		.deceased
+																}
+															</span>
+														) : (
+															<span className='down deceased'>
+																{
+																	dataObj[arr]
+																		.delta
+																		.deceased
+																}
+															</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+											</div>
+										) : (
+											''
+										);
+									})}
+								</>
+							) : (
+								<>
+									{dataObj.map((arr, idx) => {
+										return (
+											<div
+												className='table-row'
+												key={idx}
+											>
+												<div className='table-cell'>
+													{arr.state}
+												</div>
+												<div className='table-cell'>
+													{arr.cases ? arr.cases : 0}{' '}
+													{arr.todayCases ? (
+														arr.todayCases ? (
+															<span className='up confirmed'>
+																{arr.todayCases}
+															</span>
+														) : (
+															<span className='down confirmed'>
+																{arr.todayCases}
+															</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{arr.active}
+												</div>
+												<div className='table-cell'>
+													{arr.deaths
+														? arr.deaths
+														: 0}{' '}
+													{arr.todayDeaths ? (
+														arr.todayDeaths ? (
+															<span className='up recovered'>
+																{
+																	arr.todayDeaths
+																}
+															</span>
+														) : (
+															<span className='down recovered'>
+																{
+																	arr.todayDeaths
+																}
+															</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{arr.tests ? arr.tests : 0}
+												</div>
+											</div>
+										);
+									})}
+								</>
+							)}
+						</div>
+					</div>
 				</div>
+				<div className='container-right'></div>
 			</div>
 		</>
 	);
@@ -302,7 +362,7 @@ const frameHeaderMarkup = (country) => {
 	}
 };
 
-const createDataMarkup = (country, dataObj) => {};
+// const createDataMarkup = (country, dataObj) => {};
 
 // const tableDataMarkup = (country, statewiseData) => {
 // 	if (country && country.toLowerCase() === 'india' && statewiseData.length) {
