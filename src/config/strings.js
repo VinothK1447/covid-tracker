@@ -25,10 +25,10 @@ const strings = {
 		datasource: 'Data sources - disease.sh,  api.covid19india.org',
 		stateOrUT: 'State / UT',
 		state: 'State',
-		confirmedWithDelta: 'Confirmed<sup>*</sup>',
+		confirmedWithDelta: 'Confirmed(*)',
 		active: 'Active',
-		recoveredWithDelta: 'Recovered<sup>*</sup>',
-		deathsWithDelta: 'Deaths<sup>*</sup>',
+		recoveredWithDelta: 'Recovered(*)',
+		deathsWithDelta: 'Deaths(*)',
 		'*': ' - Numbers with arrow signs = Delta from previous count',
 	},
 };

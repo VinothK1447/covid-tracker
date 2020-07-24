@@ -2,10 +2,18 @@
 	display: table;
 	text-align: center;
 	border-collapse: collapse;
-	margin: 10px;
 
-	&-half {
+	&-wrapper {
+		margin: 10px;
 		width: 50%;
+		@media only screen and (max-width: 375px) {
+			width: 98%;
+			overflow-x: auto;
+		}
+		@media only screen and (min-width: 375px) and (max-width: 768px) {
+			width: 98%;
+			overflow-x: auto;
+		}
 	}
 
 	&-row {
@@ -28,9 +36,14 @@
 		padding: 10px;
 		text-align: left;
 		vertical-align: middle;
+		cursor: pointer;
 	}
 
 	&-info {
 		margin: 10px;
 	}
+}
+
+.state-cell {
+	width: 16%;
 }
