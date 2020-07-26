@@ -19,7 +19,9 @@ class DetailsIndia extends Component {
 				<Navbar pageName='india' />
 				<DetailDataDisplay
 					country='india'
+					countryCode='IN'
 					displayData={this.props.allIndiaDetailedData}
+					handleClick={this.handleClick}
 				/>
 				<Footer />
 			</>

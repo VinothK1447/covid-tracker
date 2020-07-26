@@ -1,5 +1,6 @@
 const strings = {
 	en: {
+		goHome: ' < Home',
 		lastUpdated: 'Last updated ',
 		country: 'Country',
 		continent: 'Continent',
@@ -25,11 +26,14 @@ const strings = {
 		datasource: 'Data sources - disease.sh,  api.covid19india.org',
 		stateOrUT: 'State / UT',
 		state: 'State',
-		confirmedWithDelta: 'Confirmed(*)',
+		withDelta: '(*)',
+		confirmed: 'Confirmed',
 		active: 'Active',
-		recoveredWithDelta: 'Recovered(*)',
-		deathsWithDelta: 'Deaths(*)',
 		'*': ' - Numbers with arrow signs = Delta from previous count',
+		sourceLbl: 'Source',
+		districtDetailsLbl: ' - Districtwise details',
+		detailsHeader: 'Details',
+		notFound: "The page you're looking for doesn't exist!",
 	},
 };
 export default strings;

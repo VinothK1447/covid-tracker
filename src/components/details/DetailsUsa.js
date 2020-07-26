@@ -17,6 +17,7 @@ class DetailsUsa extends Component {
 				<Navbar pageName='usa' />
 				<DetailDataDisplay
 					country='usa'
+					countryCode='US'
 					displayData={this.props.usaDetailedData}
 				/>
 				<Footer />

@@ -13,6 +13,16 @@ body {
 	background: $light-gray;
 }
 
+a,
+a:visited,
+a:hover,
+a:link,
+a:active {
+	text-decoration: none;
+	color: $border-blue;
+	font-weight: 600;
+}
+
 .show {
 	display: block;
 	visibility: visible;
@@ -72,6 +82,8 @@ body {
 @import './typeahead/typeahead.scss';
 @import './navbar/navbar.scss';
 @import './table/table.scss';
+@import './state/state.scss';
+@import './error/error.scss';
 
 .__react_component_tooltip {
 	max-width: 250px;
@@ -97,4 +109,20 @@ body {
 	@media screen and (min-width: 375px) and (max-width: 768px) {
 		flex-flow: column nowrap;
 	}
+
+	&-left,
+	&-right {
+		width: 50%;
+		@media screen and (max-width: 375px) {
+			width: 100%;
+		}
+		@media screen and (min-width: 375px) and (max-width: 768px) {
+			width: 100%;
+		}
+	}
+}
+
+#chartdiv {
+	width: 100%;
+	height: 500px;
 }

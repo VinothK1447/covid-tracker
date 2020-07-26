@@ -1,11 +1,11 @@
 const menuConfig = {
 	home: {
 		left: {
-			text: ' < India - State, District Current Data ',
+			text: ' < India - Detailed View ',
 			link: '/detailsIndia',
 		},
 		right: {
-			text: ' USA - Current State Data > ',
+			text: ' USA - Detailed View > ',
 			link: '/detailsUsa',
 		},
 	},
@@ -15,7 +15,7 @@ const menuConfig = {
 			link: '/',
 		},
 		right: {
-			text: ' USA - Current State Data > ',
+			text: ' USA - Detailed View > ',
 			link: '/detailsUsa',
 		},
 	},
@@ -25,7 +25,7 @@ const menuConfig = {
 			link: '/',
 		},
 		right: {
-			text: ' India - State, District Current Data > ',
+			text: ' India - Detailed View > ',
 			link: '/detailsIndia',
 		},
 	},

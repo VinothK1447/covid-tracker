@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import strings from '../../config/strings';
 import ReactTooltip from 'react-tooltip';
+import SelectedStateDetails from './SelectedStateDetails';
+// import Chart from '../charts/Chart';
 
 function DetailDataDisplay(props) {
 	let { displayData, country } = props;
 	let dataObj = Object.keys(displayData).length ? displayData : [];
 	let frameHeader = frameHeaderMarkup(country);
+
+	const [selectedStateData, setSelectedStateData] = useState({});
+
+	function handleClick(obj) {
+		setSelectedStateData(obj);
+	}
+
 	return (
 		<>
 			<div className='container'>
@@ -112,6 +121,9 @@ function DetailDataDisplay(props) {
 											<div
 												className='table-row'
 												key={idx}
+												onClick={(e) =>
+													handleClick(dataObj[arr])
+												}
 											>
 												<div className='table-cell state-cell'>
 													{dataObj[arr].stateName}{' '}
@@ -240,6 +252,9 @@ function DetailDataDisplay(props) {
 											<div
 												className='table-row'
 												key={idx}
+												onClick={(e) =>
+													handleClick(e, arr)
+												}
 											>
 												<div className='table-cell'>
 													{arr.state}
@@ -296,7 +311,15 @@ function DetailDataDisplay(props) {
 						</div>
 					</div>
 				</div>
-				<div className='container-right'></div>
+				<div className='container-right'>
+					{selectedStateData ? (
+						<SelectedStateDetails
+							selectedState={selectedStateData}
+						/>
+					) : (
+						''
+					)}
+				</div>
 			</div>
 		</>
 	);
@@ -313,7 +336,7 @@ const frameHeaderMarkup = (country) => {
 					<div
 						className='table-cell confirmed-cell'
 						dangerouslySetInnerHTML={{
-							__html: strings.en['confirmedWithDelta'],
+							__html: `${strings.en.confirmed}${strings.en.withDelta}`,
 						}}
 					></div>
 					<div className='table-cell active-cell'>
@@ -322,13 +345,13 @@ const frameHeaderMarkup = (country) => {
 					<div
 						className='table-cell recovered-cell'
 						dangerouslySetInnerHTML={{
-							__html: strings.en['recoveredWithDelta'],
+							__html: `${strings.en.recovered}${strings.en.withDelta}`,
 						}}
 					></div>
 					<div
 						className='table-cell deaths-cell'
 						dangerouslySetInnerHTML={{
-							__html: strings.en['deathsWithDelta'],
+							__html: `${strings.en.deaths}${strings.en.withDelta}`,
 						}}
 					></div>
 				</div>
@@ -345,14 +368,14 @@ const frameHeaderMarkup = (country) => {
 					<div
 						className='table-cell'
 						dangerouslySetInnerHTML={{
-							__html: strings.en['confirmedWithDelta'],
+							__html: `${strings.en.confirmed}${strings.en.withDelta}`,
 						}}
 					></div>
 					<div className='table-cell'>{strings.en['active']}</div>
 					<div
 						className='table-cell'
 						dangerouslySetInnerHTML={{
-							__html: strings.en['deathsWithDelta'],
+							__html: `${strings.en.deaths}${strings.en.withDelta}`,
 						}}
 					></div>
 					<div className='table-cell'>{strings.en['tests']}</div>
@@ -361,41 +384,5 @@ const frameHeaderMarkup = (country) => {
 		);
 	}
 };
-
-// const createDataMarkup = (country, dataObj) => {};
-
-// const tableDataMarkup = (country, statewiseData) => {
-// 	if (country && country.toLowerCase() === 'india' && statewiseData.length) {
-// 		return statewiseData.map((key, idx) => {
-// 			return (
-// 				<div className='table-row' key={idx}>
-// 					{Object.keys(key).map((el) => {
-// 						return (
-// 							<>
-// 								<div className='table-cell state-cell'>
-// 									{key['state']}
-// 								</div>
-// 								<div className='table-cell confirmed-cell'>
-// 									{key['confirmed']} ({key['deltaconfirmed']})
-// 								</div>
-// 								<div className='table-cell active-cell'>
-// 									{key['active']}
-// 								</div>
-// 								<div className='table-cell recovered-cell'>
-// 									{key['recovered']} ({key['deltarecovered']})
-// 								</div>
-// 								<div className='table-cell deaths-cell'>
-// 									{key['deaths']} ({key['deltadeaths']})
-// 								</div>
-// 							</>
-// 						);
-// 					})}
-// 				</div>
-// 			);
-// 		});
-// 	}
-// 	if (country && country.toLowerCase() === 'usa') {
-// 	}
-// };
 
 export default DetailDataDisplay;

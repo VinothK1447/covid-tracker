@@ -5,7 +5,6 @@
 
 	&-wrapper {
 		margin: 10px;
-		width: 50%;
 		@media only screen and (max-width: 375px) {
 			width: 98%;
 			overflow-x: auto;
@@ -37,6 +36,10 @@
 		text-align: left;
 		vertical-align: middle;
 		cursor: pointer;
+
+		&:not(:last-child) {
+			border-right: 1px solid $light-grey;
+		}
 	}
 
 	&-info {
@@ -44,6 +47,7 @@
 	}
 }
 
-.state-cell {
-	width: 16%;
+.state-cell,
+.district-cell {
+	width: 30%;
 }
