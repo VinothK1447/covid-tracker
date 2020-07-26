@@ -11,8 +11,17 @@ function DetailDataDisplay(props) {
 
 	const [selectedStateData, setSelectedStateData] = useState({});
 
-	function handleClick(obj) {
+	function handleClick(e, obj) {
+		const row = e.target.closest('.table-row');
+		const rows = document.querySelectorAll('#stateTbl .table-row');
 		setSelectedStateData(obj);
+		for (let i = 0; i < rows.length; i++) {
+			if (rows[i].classList.contains('highlight-row')) {
+				rows[i].classList.remove('highlight-row');
+			}
+		}
+		row.classList.add('highlight-row');
+		window.scrollTo(0, 0);
 	}
 
 	return (
@@ -21,7 +30,7 @@ function DetailDataDisplay(props) {
 				<div className='container-left'>
 					<div className='table-info'>* {strings.en['*']}</div>
 					<div className='table-wrapper'>
-						<div className='table'>
+						<div className='table' id='stateTbl'>
 							{frameHeader}
 							{country &&
 							country.toLowerCase() === 'india' &&
@@ -122,7 +131,7 @@ function DetailDataDisplay(props) {
 												className='table-row'
 												key={idx}
 												onClick={(e) =>
-													handleClick(dataObj[arr])
+													handleClick(e, dataObj[arr])
 												}
 											>
 												<div className='table-cell state-cell'>
