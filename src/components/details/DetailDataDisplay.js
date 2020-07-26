@@ -21,7 +21,7 @@ function DetailDataDisplay(props) {
 			}
 		}
 		row.classList.add('highlight-row');
-		window.scrollTo(0, 0);
+		window.scrollTo(0, document.getElementById('state-section').offsetTop);
 	}
 
 	return (

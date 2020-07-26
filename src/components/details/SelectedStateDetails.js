@@ -11,7 +11,11 @@ function DistrictDetails(props) {
 			: '';
 
 	return (
-		<div key='selected-state-details' className='state-section hide'>
+		<div
+			key='selected-state-details'
+			className='state-section hide'
+			id='state-section'
+		>
 			{renderStateDetails}
 		</div>
 	);
