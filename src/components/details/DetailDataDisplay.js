@@ -7,7 +7,6 @@ import SelectedStateDetails from './SelectedStateDetails';
 function DetailDataDisplay(props) {
 	let { displayData, country } = props;
 	let dataObj = Object.keys(displayData).length ? displayData : [];
-	let frameHeader = frameHeaderMarkup(country);
 
 	const [selectedStateData, setSelectedStateData] = useState({});
 
@@ -23,6 +22,241 @@ function DetailDataDisplay(props) {
 		row.classList.add('highlight-row');
 		window.scrollTo(0, document.getElementById('state-section').offsetTop);
 	}
+
+	const frameHeaderMarkup = (country) => {
+		if (country && country.toLowerCase() === 'india') {
+			return (
+				<>
+					<div className='table-header'>
+						<div
+							className={
+								props.sortBy === 'stateName' &&
+								props.sortType === 'asc'
+									? 'table-cell state-cell asc'
+									: props.sortBy === 'stateName' &&
+									  props.sortType === 'desc'
+									? 'table-cell state-cell desc'
+									: 'table-cell state-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'stateName' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='stateName'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en['stateOrUT']}
+						</div>
+						<div
+							className={
+								props.sortBy === 'confirmed' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'confirmed' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'confirmed' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='confirmed'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en.confirmed}
+							{strings.en.withDelta}
+						</div>
+						<div
+							className={
+								props.sortBy === 'active' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'active' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'active' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='active'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en['active']}
+						</div>
+						<div
+							className={
+								props.sortBy === 'recovered' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'recovered' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'recovered' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='recovered'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en.recovered}
+							{strings.en.withDelta}
+						</div>
+						<div
+							className={
+								props.sortBy === 'deceased' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'deceased' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'deceased' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='deceased'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en.deaths}
+							{strings.en.withDelta}
+						</div>
+					</div>
+				</>
+			);
+		}
+		if (country && country.toLowerCase() === 'usa') {
+			return (
+				<>
+					<div className='table-header'>
+						<div
+							className={
+								props.sortBy === 'state' &&
+								props.sortType === 'asc'
+									? 'table-cell state-cell asc'
+									: props.sortBy === 'state' &&
+									  props.sortType === 'desc'
+									? 'table-cell state-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'state' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='state'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en['state']}
+						</div>
+						<div
+							className={
+								props.sortBy === 'cases' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'cases' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'cases' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='cases'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en.confirmed}
+							{strings.en.withDelta}
+						</div>
+						<div
+							className={
+								props.sortBy === 'active' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'active' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'active' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='active'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en['active']}
+						</div>
+						<div
+							className={
+								props.sortBy === 'deaths' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'deaths' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'deaths' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='deaths'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en.deaths}
+							{strings.en.withDelta}
+						</div>
+						<div
+							className={
+								props.sortBy === 'tests' &&
+								props.sortType === 'asc'
+									? 'table-cell asc'
+									: props.sortBy === 'tests' &&
+									  props.sortType === 'desc'
+									? 'table-cell desc'
+									: 'table-cell'
+							}
+							data-sort-type={
+								props.sortBy === 'tests' &&
+								props.sortType === 'asc'
+									? 'desc'
+									: 'asc'
+							}
+							data-sort-by='tests'
+							onClick={(e) => props.sortData(e)}
+						>
+							{strings.en['tests']}
+						</div>
+					</div>
+				</>
+			);
+		}
+	};
+	let frameHeader = frameHeaderMarkup(country);
 
 	return (
 		<>
@@ -333,65 +567,5 @@ function DetailDataDisplay(props) {
 		</>
 	);
 }
-
-const frameHeaderMarkup = (country) => {
-	if (country && country.toLowerCase() === 'india') {
-		return (
-			<>
-				<div className='table-header'>
-					<div className='table-cell state-cell'>
-						{strings.en['stateOrUT']}
-					</div>
-					<div
-						className='table-cell confirmed-cell'
-						dangerouslySetInnerHTML={{
-							__html: `${strings.en.confirmed}${strings.en.withDelta}`,
-						}}
-					></div>
-					<div className='table-cell active-cell'>
-						{strings.en['active']}
-					</div>
-					<div
-						className='table-cell recovered-cell'
-						dangerouslySetInnerHTML={{
-							__html: `${strings.en.recovered}${strings.en.withDelta}`,
-						}}
-					></div>
-					<div
-						className='table-cell deaths-cell'
-						dangerouslySetInnerHTML={{
-							__html: `${strings.en.deaths}${strings.en.withDelta}`,
-						}}
-					></div>
-				</div>
-			</>
-		);
-	}
-	if (country && country.toLowerCase() === 'usa') {
-		return (
-			<>
-				<div className='table-header'>
-					<div className='table-cell state-cell'>
-						{strings.en['state']}
-					</div>
-					<div
-						className='table-cell'
-						dangerouslySetInnerHTML={{
-							__html: `${strings.en.confirmed}${strings.en.withDelta}`,
-						}}
-					></div>
-					<div className='table-cell'>{strings.en['active']}</div>
-					<div
-						className='table-cell'
-						dangerouslySetInnerHTML={{
-							__html: `${strings.en.deaths}${strings.en.withDelta}`,
-						}}
-					></div>
-					<div className='table-cell'>{strings.en['tests']}</div>
-				</div>
-			</>
-		);
-	}
-};
 
 export default DetailDataDisplay;

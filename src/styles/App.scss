@@ -61,6 +61,18 @@ a:active {
 	}
 }
 
+.asc {
+	&:after {
+		content: '\2193';
+	}
+}
+
+.desc {
+	&:after {
+		content: '\2191';
+	}
+}
+
 .confirmed {
 	color: $border-red;
 }
