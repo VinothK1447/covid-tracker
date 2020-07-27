@@ -39,6 +39,7 @@ export default (state = initialState, action) => {
 					sortType: action.payload.sortType,
 				};
 			}
+			break;
 		default:
 			return state;
 	}
