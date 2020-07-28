@@ -23,7 +23,26 @@ export const getAllIndiaDetailedData = async (dispatch) => {
 		}, {});
 	dispatch({
 		type: actionTypes.GET_ALL_INDIA_DETAILED_DATA,
-		payload: { data: allIndiaData, sortBy: 'confirmed', sortType: 'asc' },
+		payload: {
+			data: allIndiaData,
+			sortBy: 'confirmed',
+			sortType: 'asc',
+			chSortBy: '',
+			chSortType: '',
+		},
+	});
+};
+
+export const updateSelectedState = (selectedState) => (dispatch) => {
+	dispatch({
+		type: actionTypes.UPDATE_SELECTED_INDIAN_STATE,
+		payload: {
+			data: selectedState,
+			sortBy: 'confirmed',
+			sortType: 'asc',
+			chSortBy: 'districts',
+			chSortType: 'asc',
+		},
 	});
 };
 
@@ -115,6 +134,59 @@ export const sortDataByRequest = (country, sortType, sortBy) => (dispatch) => {
 			country: country,
 			sortBy: sortBy,
 			sortType: sortType,
+		},
+	});
+};
+
+export const sortChDataByRequest = (country, chSortType, chSortBy) => (
+	dispatch
+) => {
+	let data = store.getState().detailedData.selectedState;
+
+	if (country === 'india') {
+		data.districts = Object.keys(data.districts)
+			.sort((d1, d2) => {
+				if (chSortBy === 'districts') {
+					if (chSortType === 'asc') {
+						return d1.localeCompare(d2);
+					} else {
+						return d2.localeCompare(d1);
+					}
+				}
+				if (
+					chSortBy === 'confirmed' ||
+					chSortBy === 'active' ||
+					chSortBy === 'recovered' ||
+					chSortBy === 'deceased'
+				) {
+					if (chSortType === 'asc') {
+						return (
+							data.districts[d1].total[chSortBy] -
+							data.districts[d2].total[chSortBy]
+						);
+					} else {
+						return (
+							data.districts[d2].total[chSortBy] -
+							data.districts[d1].total[chSortBy]
+						);
+					}
+				}
+				return false;
+			})
+			.reduce((arr, key) => {
+				arr[key] = data.districts[key];
+				return arr;
+			}, {});
+		data = { ...data, districts: data.districts };
+	}
+
+	dispatch({
+		type: actionTypes.SORT_CHDATA_BY_REQUEST,
+		payload: {
+			data: data,
+			country: country,
+			chSortBy: chSortBy,
+			chSortType: chSortType,
 		},
 	});
 };

@@ -26,6 +26,7 @@ const strings = {
 		datasource: 'Data sources - disease.sh,  api.covid19india.org',
 		stateOrUT: 'State / UT',
 		state: 'State',
+		district: 'District',
 		withDelta: '(*)',
 		confirmed: 'Confirmed',
 		active: 'Active',
@@ -34,6 +35,14 @@ const strings = {
 		districtDetailsLbl: ' - Districtwise details',
 		detailsHeader: 'Details',
 		notFound: "The page you're looking for doesn't exist!",
+		year: 'year',
+		month: 'month',
+		day: 'day',
+		hour: 'hour',
+		minute: 'minute',
+		timeSuffix: 's',
+		ago: 'ago',
+		about: 'About',
 	},
 };
 export default strings;

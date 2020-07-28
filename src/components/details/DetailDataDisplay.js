@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import strings from '../../config/strings';
 import ReactTooltip from 'react-tooltip';
 import SelectedStateDetails from './SelectedStateDetails';
@@ -8,12 +8,10 @@ function DetailDataDisplay(props) {
 	let { displayData, country } = props;
 	let dataObj = Object.keys(displayData).length ? displayData : [];
 
-	const [selectedStateData, setSelectedStateData] = useState({});
-
 	function handleClick(e, obj) {
 		const row = e.target.closest('.table-row');
 		const rows = document.querySelectorAll('#stateTbl .table-row');
-		setSelectedStateData(obj);
+		props.updateSelectedState(obj);
 		for (let i = 0; i < rows.length; i++) {
 			if (rows[i].classList.contains('highlight-row')) {
 				rows[i].classList.remove('highlight-row');
@@ -555,9 +553,12 @@ function DetailDataDisplay(props) {
 					</div>
 				</div>
 				<div className='container-right'>
-					{selectedStateData ? (
+					{props.selectedState ? (
 						<SelectedStateDetails
-							selectedState={selectedStateData}
+							chSortData={(e) => props.chSortData(e)}
+							chSortBy={props.chSortBy}
+							chSortType={props.chSortType}
+							selectedState={props.selectedState}
 						/>
 					) : (
 						''

@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import {
 	getAllIndiaDetailedData,
 	sortDataByRequest,
+	updateSelectedState,
+	sortChDataByRequest,
 } from '../../redux/actions/DetailDataAction';
 import Navbar from '../hoc/Navbar';
 
@@ -20,6 +22,15 @@ class DetailsIndia extends Component {
 		this.props.sortDataByRequest('india', sortType, sortBy);
 	};
 
+	chSortData = (e) => {
+		const { chSortType, chSortBy } = e.target.dataset;
+		this.props.sortChDataByRequest('india', chSortType, chSortBy);
+	};
+
+	updateSelectedState = (data) => {
+		this.props.updateSelectedState(data);
+	};
+
 	render() {
 		return (
 			<>
@@ -29,10 +40,17 @@ class DetailsIndia extends Component {
 					country='india'
 					countryCode='IN'
 					displayData={this.props.allIndiaDetailedData}
+					updateSelectedState={(data) =>
+						this.updateSelectedState(data)
+					}
+					selectedState={this.props.selectedState}
 					handleClick={this.handleClick}
 					sortData={(e) => this.sortData(e)}
 					sortBy={this.props.sortBy}
 					sortType={this.props.sortType}
+					chSortData={(e) => this.chSortData(e)}
+					chSortBy={this.props.chSortBy}
+					chSortType={this.props.chSortType}
 				/>
 				<Footer />
 			</>
@@ -42,8 +60,11 @@ class DetailsIndia extends Component {
 const mapStateToProps = (state) => {
 	return {
 		allIndiaDetailedData: state.detailedData.allIndiaDetailedData,
+		selectedState: state.detailedData.selectedState,
 		sortBy: state.detailedData.sortBy,
 		sortType: state.detailedData.sortType,
+		chSortBy: state.detailedData.chSortBy,
+		chSortType: state.detailedData.chSortType,
 	};
 };
 
@@ -52,8 +73,14 @@ const mapDispatchToProps = (dispatch) => {
 		getAllIndiaDetailedData: () => {
 			dispatch(getAllIndiaDetailedData);
 		},
+		updateSelectedState: (data) => {
+			dispatch(updateSelectedState(data));
+		},
 		sortDataByRequest: (country, sortType, sortBy) => {
 			dispatch(sortDataByRequest(country, sortType, sortBy));
+		},
+		sortChDataByRequest: (country, chSortType, chSortBy) => {
+			dispatch(sortChDataByRequest(country, chSortType, chSortBy));
 		},
 	};
 };

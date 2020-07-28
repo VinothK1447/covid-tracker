@@ -2,9 +2,12 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
 	allIndiaDetailedData: {},
+	selectedState: {},
 	usaDetailedData: [],
 	sortBy: '',
 	sortType: '',
+	chSortType: '',
+	chSortBy: '',
 };
 export default (state = initialState, action) => {
 	switch (action.type) {
@@ -14,6 +17,15 @@ export default (state = initialState, action) => {
 				allIndiaDetailedData: action.payload.data,
 				sortBy: action.payload.sortBy,
 				sortType: action.payload.sortType,
+				chSortBy: action.payload.chSortBy,
+				chSortType: action.payload.chSortType,
+			};
+		case actionTypes.UPDATE_SELECTED_INDIAN_STATE:
+			return {
+				...state,
+				selectedState: action.payload.data,
+				chSortBy: action.payload.chSortBy,
+				chSortType: action.payload.chSortType,
 			};
 		case actionTypes.GET_USA_DETAILED_DATA:
 			return {
@@ -40,6 +52,13 @@ export default (state = initialState, action) => {
 				};
 			}
 			break;
+		case actionTypes.SORT_CHDATA_BY_REQUEST:
+			return {
+				...state,
+				selectedState: action.payload.data,
+				chSortBy: action.payload.chSortBy,
+				chSortType: action.payload.chSortType,
+			};
 		default:
 			return state;
 	}
