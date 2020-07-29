@@ -4,6 +4,8 @@ const initialState = {
 	allIndiaDetailedData: {},
 	selectedState: {},
 	usaDetailedData: [],
+	usaStateCountiesData: {},
+	selectedStateCounties: [],
 	sortBy: '',
 	sortType: '',
 	chSortType: '',
@@ -21,6 +23,7 @@ export default (state = initialState, action) => {
 				chSortType: action.payload.chSortType,
 			};
 		case actionTypes.UPDATE_SELECTED_INDIAN_STATE:
+		case actionTypes.UPDATE_SELECTED_US_STATE:
 			return {
 				...state,
 				selectedState: action.payload.data,
@@ -33,6 +36,18 @@ export default (state = initialState, action) => {
 				usaDetailedData: action.payload.data,
 				sortBy: action.payload.sortBy,
 				sortType: action.payload.sortType,
+			};
+		case actionTypes.GET_US_STATE_COUNTY_DATA:
+			return {
+				...state,
+				usaStateCountiesData: action.payload,
+			};
+		case actionTypes.UPDATE_SELECTED_STATE_COUNTY_DATA:
+			return {
+				...state,
+				selectedStateCounties: action.payload.data,
+				chSortBy: action.payload.chSortBy,
+				chSortType: action.payload.chSortType,
 			};
 		case actionTypes.SORT_DATA_BY_REQUEST:
 			if (action.payload.country === 'india') {

@@ -6,6 +6,7 @@ const apis = {
 	usaStatesUri: '/states',
 	defaultIndiaDataUri: '//api.covid19india.org/v4',
 	indiaAllDataUri: '/data.json',
+	usaCountiesUri: '/jhucsse/counties',
 };
 
 export default apis;

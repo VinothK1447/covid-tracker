@@ -27,8 +27,8 @@ class DetailsIndia extends Component {
 		this.props.sortChDataByRequest('india', chSortType, chSortBy);
 	};
 
-	updateSelectedState = (data) => {
-		this.props.updateSelectedState(data);
+	updateSelectedState = (data, country) => {
+		this.props.updateSelectedState(data, country);
 	};
 
 	render() {
@@ -40,8 +40,8 @@ class DetailsIndia extends Component {
 					country='india'
 					countryCode='IN'
 					displayData={this.props.allIndiaDetailedData}
-					updateSelectedState={(data) =>
-						this.updateSelectedState(data)
+					updateSelectedState={(data, country = 'india') =>
+						this.updateSelectedState(data, country)
 					}
 					selectedState={this.props.selectedState}
 					handleClick={this.handleClick}
@@ -73,8 +73,8 @@ const mapDispatchToProps = (dispatch) => {
 		getAllIndiaDetailedData: () => {
 			dispatch(getAllIndiaDetailedData);
 		},
-		updateSelectedState: (data) => {
-			dispatch(updateSelectedState(data));
+		updateSelectedState: (data, country) => {
+			dispatch(updateSelectedState(data, country));
 		},
 		sortDataByRequest: (country, sortType, sortBy) => {
 			dispatch(sortDataByRequest(country, sortType, sortBy));

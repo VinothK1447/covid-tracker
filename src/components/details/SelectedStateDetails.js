@@ -5,6 +5,7 @@ import CountUp from 'react-countup';
 import ReactTooltip from 'react-tooltip';
 
 function DistrictDetails(props) {
+	// console.log(props);
 	const frameDisplay = (data) => {
 		const { stateName, districts, meta } = data;
 
@@ -292,16 +293,23 @@ function DistrictDetails(props) {
 			</>
 		);
 	};
+	const frameUSCountiesDisplay = (data) => {
+		return <>{<div className='state-name'>{'States'}</div>}</>;
+	};
 
 	const renderStateDetails =
-		props && Object.keys(props.selectedState).length
-			? frameDisplay(props.selectedState)
+		props && props.country === 'india'
+			? Object.keys(props.selectedState).length
+				? frameDisplay(props.selectedState)
+				: ''
+			: props.selectedStateCounties.length
+			? frameUSCountiesDisplay(props.selectedStateCounties)
 			: '';
 
 	return (
 		<div
 			key='selected-state-details'
-			className='state-section hide'
+			className='state-section'
 			id='state-section'
 		>
 			{renderStateDetails}

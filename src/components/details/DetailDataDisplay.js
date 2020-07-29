@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import strings from '../../config/strings';
 import ReactTooltip from 'react-tooltip';
 import SelectedStateDetails from './SelectedStateDetails';
@@ -7,18 +7,11 @@ import SelectedStateDetails from './SelectedStateDetails';
 function DetailDataDisplay(props) {
 	let { displayData, country } = props;
 	let dataObj = Object.keys(displayData).length ? displayData : [];
+	const stateSectionEl = useRef(null);
 
 	function handleClick(e, obj) {
-		const row = e.target.closest('.table-row');
-		const rows = document.querySelectorAll('#stateTbl .table-row');
-		props.updateSelectedState(obj);
-		for (let i = 0; i < rows.length; i++) {
-			if (rows[i].classList.contains('highlight-row')) {
-				rows[i].classList.remove('highlight-row');
-			}
-		}
-		row.classList.add('highlight-row');
-		window.scrollTo(0, document.getElementById('state-section').offsetTop);
+		props.updateSelectedState(obj, props.country);
+		window.scrollTo(0, stateSectionEl.current.offsetTop);
 	}
 
 	const frameHeaderMarkup = (country) => {
@@ -362,6 +355,9 @@ function DetailDataDisplay(props) {
 											<div
 												className='table-row'
 												key={idx}
+												data-marker={
+													dataObj[arr].stateName
+												}
 												onClick={(e) =>
 													handleClick(e, dataObj[arr])
 												}
@@ -493,6 +489,7 @@ function DetailDataDisplay(props) {
 											<div
 												className='table-row'
 												key={idx}
+												data-marker={arr.state}
 												onClick={(e) =>
 													handleClick(e, arr)
 												}
@@ -552,13 +549,15 @@ function DetailDataDisplay(props) {
 						</div>
 					</div>
 				</div>
-				<div className='container-right'>
+				<div className='container-right' ref={stateSectionEl}>
 					{props.selectedState ? (
 						<SelectedStateDetails
 							chSortData={(e) => props.chSortData(e)}
 							chSortBy={props.chSortBy}
 							chSortType={props.chSortType}
 							selectedState={props.selectedState}
+							country={props.country}
+							selectedStateCounties={props.selectedStateCounties}
 						/>
 					) : (
 						''

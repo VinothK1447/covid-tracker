@@ -6,17 +6,29 @@ import { connect } from 'react-redux';
 import {
 	getUSAsDetailedData,
 	sortDataByRequest,
+	getUSAStateCountiesData,
+	updateSelectedState,
 } from '../../redux/actions/DetailDataAction';
 import Navbar from '../hoc/Navbar';
 
 class DetailsUsa extends Component {
 	componentDidMount() {
 		this.props.getUSAsDetailedData();
+		this.props.getUSAStateCountiesData();
 	}
 
 	sortData = (e) => {
 		const { sortType, sortBy } = e.target.dataset;
 		this.props.sortDataByRequest('usa', sortType, sortBy);
+	};
+
+	chSortData = (e) => {
+		const { chSortType, chSortBy } = e.target.dataset;
+		this.props.sortChDataByRequest('usa', chSortType, chSortBy);
+	};
+
+	updateSelectedState = (data, country) => {
+		this.props.updateSelectedState(data, country);
 	};
 
 	render() {
@@ -31,6 +43,14 @@ class DetailsUsa extends Component {
 					sortData={(e) => this.sortData(e)}
 					sortBy={this.props.sortBy}
 					sortType={this.props.sortType}
+					updateSelectedState={(data, country = 'usa') =>
+						this.updateSelectedState(data, country)
+					}
+					selectedState={this.props.selectedState}
+					selectedStateCounties={this.props.selectedStateCounties}
+					chSortData={(e) => this.chSortData(e)}
+					chSortBy={this.props.chSortBy}
+					chSortType={this.props.chSortType}
 				/>
 				<Footer />
 			</>
@@ -41,8 +61,12 @@ class DetailsUsa extends Component {
 const mapStateToProps = (state) => {
 	return {
 		usaDetailedData: state.detailedData.usaDetailedData,
+		selectedState: state.detailedData.selectedState,
+		selectedStateCounties: state.detailedData.selectedStateCounties,
 		sortBy: state.detailedData.sortBy,
 		sortType: state.detailedData.sortType,
+		chSortBy: state.detailedData.chSortBy,
+		chSortType: state.detailedData.chSortType,
 	};
 };
 
@@ -53,6 +77,12 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		sortDataByRequest: (country, sortType, sortBy) => {
 			dispatch(sortDataByRequest(country, sortType, sortBy));
+		},
+		getUSAStateCountiesData: () => {
+			dispatch(getUSAStateCountiesData);
+		},
+		updateSelectedState: (data, country) => {
+			dispatch(updateSelectedState(data, country));
 		},
 	};
 };

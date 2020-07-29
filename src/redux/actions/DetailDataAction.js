@@ -33,17 +33,44 @@ export const getAllIndiaDetailedData = async (dispatch) => {
 	});
 };
 
-export const updateSelectedState = (selectedState) => (dispatch) => {
-	dispatch({
-		type: actionTypes.UPDATE_SELECTED_INDIAN_STATE,
-		payload: {
-			data: selectedState,
-			sortBy: 'confirmed',
-			sortType: 'asc',
-			chSortBy: 'districts',
-			chSortType: 'asc',
-		},
-	});
+export const updateSelectedState = (selectedState, country) => (dispatch) => {
+	if (country === 'india') {
+		dispatch({
+			type: actionTypes.UPDATE_SELECTED_INDIAN_STATE,
+			payload: {
+				data: selectedState,
+				sortBy: 'confirmed',
+				sortType: 'asc',
+				chSortBy: 'districts',
+				chSortType: 'asc',
+			},
+		});
+	}
+	if (country === 'usa') {
+		const stateName = selectedState.state;
+		const selectedStateCounties = store.getState().detailedData
+			.usaStateCountiesData[stateName];
+
+		dispatch({
+			type: actionTypes.UPDATE_SELECTED_US_STATE,
+			payload: {
+				data: selectedState,
+				sortBy: 'confirmed',
+				sortType: 'asc',
+				chSortBy: 'districts',
+				chSortType: 'asc',
+			},
+		});
+
+		dispatch({
+			type: actionTypes.UPDATE_SELECTED_STATE_COUNTY_DATA,
+			payload: {
+				data: selectedStateCounties,
+				chSortBy: 'districts',
+				chSortType: 'asc',
+			},
+		});
+	}
 };
 
 export const getUSAsDetailedData = async (dispatch) => {
@@ -55,6 +82,27 @@ export const getUSAsDetailedData = async (dispatch) => {
 	dispatch({
 		type: actionTypes.GET_USA_DETAILED_DATA,
 		payload: { data: usaDetailedData, sortBy: 'cases', sortType: 'asc' },
+	});
+};
+
+export const getUSAStateCountiesData = async (dispatch) => {
+	const config = {
+		url: `${apis.defaultApiUri}${apis.usaCountiesUri}`,
+	};
+
+	const usStateCountyData = await getData(config);
+	let countiesByState = {};
+	usStateCountyData.map((county) => {
+		if (!countiesByState.hasOwnProperty(county.province)) {
+			countiesByState[county.province] = [county];
+		} else {
+			countiesByState[county.province].push(county);
+		}
+		return countiesByState;
+	});
+	dispatch({
+		type: actionTypes.GET_US_STATE_COUNTY_DATA,
+		payload: countiesByState,
 	});
 };
 
@@ -115,6 +163,7 @@ export const sortDataByRequest = (country, sortType, sortBy) => (dispatch) => {
 			}
 			if (
 				sortBy === 'cases' ||
+				sortBy === 'active' ||
 				sortBy === 'deaths' ||
 				sortBy === 'tests'
 			) {
