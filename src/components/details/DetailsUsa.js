@@ -8,6 +8,7 @@ import {
 	sortDataByRequest,
 	getUSAStateCountiesData,
 	updateSelectedState,
+	sortChDataByRequest,
 } from '../../redux/actions/DetailDataAction';
 import Navbar from '../hoc/Navbar';
 
@@ -83,6 +84,9 @@ const mapDispatchToProps = (dispatch) => {
 		},
 		updateSelectedState: (data, country) => {
 			dispatch(updateSelectedState(data, country));
+		},
+		sortChDataByRequest: (country, chSortType, chSortBy) => {
+			dispatch(sortChDataByRequest(country, chSortType, chSortBy));
 		},
 	};
 };

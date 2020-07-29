@@ -48,8 +48,8 @@ export const updateSelectedState = (selectedState, country) => (dispatch) => {
 	}
 	if (country === 'usa') {
 		const stateName = selectedState.state;
-		const selectedStateCounties = store.getState().detailedData
-			.usaStateCountiesData[stateName];
+		const selectedStateCounties =
+			store.getState().detailedData.usaStateCountiesData[stateName] || [];
 
 		dispatch({
 			type: actionTypes.UPDATE_SELECTED_US_STATE,
@@ -57,7 +57,7 @@ export const updateSelectedState = (selectedState, country) => (dispatch) => {
 				data: selectedState,
 				sortBy: 'confirmed',
 				sortType: 'asc',
-				chSortBy: 'districts',
+				chSortBy: 'county',
 				chSortType: 'asc',
 			},
 		});
@@ -66,7 +66,7 @@ export const updateSelectedState = (selectedState, country) => (dispatch) => {
 			type: actionTypes.UPDATE_SELECTED_STATE_COUNTY_DATA,
 			payload: {
 				data: selectedStateCounties,
-				chSortBy: 'districts',
+				chSortBy: 'county',
 				chSortType: 'asc',
 			},
 		});
@@ -190,9 +190,9 @@ export const sortDataByRequest = (country, sortType, sortBy) => (dispatch) => {
 export const sortChDataByRequest = (country, chSortType, chSortBy) => (
 	dispatch
 ) => {
-	let data = store.getState().detailedData.selectedState;
-
+	var data;
 	if (country === 'india') {
+		data = store.getState().detailedData.selectedState;
 		data.districts = Object.keys(data.districts)
 			.sort((d1, d2) => {
 				if (chSortBy === 'districts') {
@@ -228,7 +228,33 @@ export const sortChDataByRequest = (country, chSortType, chSortBy) => (
 			}, {});
 		data = { ...data, districts: data.districts };
 	}
-
+	if (country === 'usa') {
+		data = store.getState().detailedData.selectedStateCounties;
+		data = data.sort((c1, c2) => {
+			if (chSortBy === 'county') {
+				if (chSortType === 'asc') {
+					return c1.county.localeCompare(c2.county);
+				} else {
+					return c2.county.localeCompare(c1.county);
+				}
+			}
+			if (chSortBy === 'confirmed') {
+				if (chSortType === 'asc') {
+					return c1.stats.confirmed - c2.stats.confirmed;
+				} else {
+					return c2.stats.confirmed - c1.stats.confirmed;
+				}
+			}
+			if (chSortBy === 'deaths') {
+				if (chSortType === 'asc') {
+					return c1.stats.deaths - c2.stats.deaths;
+				} else {
+					return c2.stats.deaths - c1.stats.deaths;
+				}
+			}
+			return false;
+		});
+	}
 	dispatch({
 		type: actionTypes.SORT_CHDATA_BY_REQUEST,
 		payload: {

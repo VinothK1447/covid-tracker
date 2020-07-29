@@ -63,12 +63,14 @@ a:active {
 
 .asc {
 	&:after {
+		float: right;
 		content: '\2193';
 	}
 }
 
 .desc {
 	&:after {
+		float: right;
 		content: '\2191';
 	}
 }

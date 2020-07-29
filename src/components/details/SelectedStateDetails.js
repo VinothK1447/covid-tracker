@@ -293,8 +293,110 @@ function DistrictDetails(props) {
 			</>
 		);
 	};
-	const frameUSCountiesDisplay = (data) => {
-		return <>{<div className='state-name'>{'States'}</div>}</>;
+	const frameUSCountiesDisplay = (countiesData) => {
+		const countiesMarkup = countiesData ? (
+			<div key='districts-container' className='state-districts'>
+				<details open>
+					<summary>
+						{props.selectedState.state}
+						{strings.en.countyDetailsLbl}
+					</summary>
+					<div className='table-wrapper'>
+						<div className='table'>
+							<div className='table-header'>
+								<div
+									className={
+										props.chSortBy === 'county' &&
+										props.chSortType === 'asc'
+											? 'table-cell district-cell asc'
+											: props.chSortBy === 'county' &&
+											  props.chSortType === 'desc'
+											? 'table-cell district-cell desc'
+											: 'table-cell district-cell'
+									}
+									data-ch-sort-type={
+										props.chSortBy === 'county' &&
+										props.chSortType === 'asc'
+											? 'desc'
+											: 'asc'
+									}
+									data-ch-sort-by='county'
+									onClick={(e) => props.chSortData(e)}
+								>
+									{strings.en.county}
+								</div>
+								<div
+									className={
+										props.chSortBy === 'confirmed' &&
+										props.chSortType === 'asc'
+											? 'table-cell asc'
+											: props.chSortBy === 'confirmed' &&
+											  props.chSortType === 'desc'
+											? 'table-cell desc'
+											: 'table-cell'
+									}
+									data-ch-sort-type={
+										props.chSortBy === 'confirmed' &&
+										props.chSortType === 'asc'
+											? 'desc'
+											: 'asc'
+									}
+									data-ch-sort-by='confirmed'
+									onClick={(e) => props.chSortData(e)}
+								>
+									{strings.en.confirmed}
+									{strings.en.withDelta}
+								</div>
+								<div
+									className={
+										props.chSortBy === 'deaths' &&
+										props.chSortType === 'asc'
+											? 'table-cell asc'
+											: props.chSortBy === 'deaths' &&
+											  props.chSortType === 'desc'
+											? 'table-cell desc'
+											: 'table-cell'
+									}
+									data-ch-sort-type={
+										props.chSortBy === 'deaths' &&
+										props.chSortType === 'asc'
+											? 'desc'
+											: 'asc'
+									}
+									data-ch-sort-by='deaths'
+									onClick={(e) => props.chSortData(e)}
+								>
+									{strings.en.deaths}
+									{strings.en.withDelta}
+								</div>
+							</div>
+							{countiesData.map((district, idx) => {
+								return (
+									<div className='table-row' key={idx}>
+										<div className='table-cell district-cell'>
+											{district.county}
+										</div>
+										<div className='table-cell'>
+											{district.stats.confirmed}
+										</div>
+										<div className='table-cell'>
+											{district.stats.deaths}
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</details>
+			</div>
+		) : (
+			''
+		);
+		if (props.selectedState.state) {
+			document.querySelector('.state-section').classList.remove('hide');
+		}
+
+		return <>{countiesMarkup}</>;
 	};
 
 	const renderStateDetails =
@@ -309,7 +411,7 @@ function DistrictDetails(props) {
 	return (
 		<div
 			key='selected-state-details'
-			className='state-section'
+			className='state-section hide'
 			id='state-section'
 		>
 			{renderStateDetails}

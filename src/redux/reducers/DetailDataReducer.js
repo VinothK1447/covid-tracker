@@ -68,12 +68,21 @@ export default (state = initialState, action) => {
 			}
 			break;
 		case actionTypes.SORT_CHDATA_BY_REQUEST:
-			return {
-				...state,
-				selectedState: action.payload.data,
-				chSortBy: action.payload.chSortBy,
-				chSortType: action.payload.chSortType,
-			};
+			if (action.payload.country === 'india') {
+				return {
+					...state,
+					selectedState: action.payload.data,
+					chSortBy: action.payload.chSortBy,
+					chSortType: action.payload.chSortType,
+				};
+			} else {
+				return {
+					...state,
+					selectedStateCounties: action.payload.data,
+					chSortBy: action.payload.chSortBy,
+					chSortType: action.payload.chSortType,
+				};
+			}
 		default:
 			return state;
 	}
