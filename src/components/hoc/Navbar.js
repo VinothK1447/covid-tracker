@@ -12,6 +12,12 @@ function Navbar(props) {
 						{menuConfig[props.pageName].left.text}{' '}
 					</Link>
 				</div>
+				<div className='nav-bar-center'>
+					<Link to={menuConfig[props.pageName].center.link}>
+						{' '}
+						{menuConfig[props.pageName].center.text}{' '}
+					</Link>
+				</div>
 				<div className='nav-bar-right'>
 					<Link to={menuConfig[props.pageName].right.link}>
 						{' '}

@@ -126,6 +126,27 @@ class Utils {
 		});
 		return data;
 	}
+
+	static normalizeVaccineData(data) {
+		if (data) {
+			data = data.map((item, idx) => {
+				item.details = item.details.replace(
+					/Outcomes:/g,
+					'<br/>Outcomes: '
+				);
+				item.details = item.details.replace(
+					/Status:/g,
+					'<br/>Status: '
+				);
+				item.details = item.details.replace(
+					/Study Design:/g,
+					'<br/>Study Design: '
+				);
+				return item;
+			});
+		}
+		return data;
+	}
 }
 
 export default Utils;

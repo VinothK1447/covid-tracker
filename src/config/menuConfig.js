@@ -1,31 +1,57 @@
 const menuConfig = {
 	home: {
 		left: {
-			text: ' < India - Detailed View ',
+			text: 'India - Current Status',
 			link: '/detailsIndia',
 		},
+		center: {
+			text: 'Vaccine Status',
+			link: '/vaccines',
+		},
 		right: {
-			text: ' USA - Detailed View > ',
+			text: 'USA - Current Status',
 			link: '/detailsUsa',
 		},
 	},
 	india: {
 		left: {
-			text: ' < Home ',
+			text: 'Home',
 			link: '/',
 		},
+		center: {
+			text: 'Vaccine Status',
+			link: '/vaccines',
+		},
 		right: {
-			text: ' USA - Detailed View > ',
+			text: 'USA - Current Status',
 			link: '/detailsUsa',
 		},
 	},
 	usa: {
 		left: {
-			text: ' < Home ',
+			text: 'Home',
+			link: '/',
+		},
+		center: {
+			text: 'Vaccine Status',
+			link: '/vaccines',
+		},
+		right: {
+			text: 'India - Current Status',
+			link: '/detailsIndia',
+		},
+	},
+	vaccines: {
+		left: {
+			text: 'Home',
 			link: '/',
 		},
 		right: {
-			text: ' India - Detailed View > ',
+			text: 'USA - Current Status',
+			link: '/detailsUsa',
+		},
+		center: {
+			text: 'India - Current Status',
 			link: '/detailsIndia',
 		},
 	},

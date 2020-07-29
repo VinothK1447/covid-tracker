@@ -8,6 +8,7 @@ import './styles/App.scss';
 import Home from './components/home/Home.js';
 import DetailsIndia from './components/details/DetailsIndia';
 import DetailsUsa from './components/details/DetailsUsa.js';
+import Vaccines from './components/vaccines/Vaccines.js';
 import Error from './components/error/Error';
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
 					<Route path='/' exact component={Home} />
 					<Route path='/detailsIndia' component={DetailsIndia} />
 					<Route path='/detailsUsa' component={DetailsUsa} />
+					<Route path='/vaccines' component={Vaccines} />
 					<Route component={Error} />
 				</Switch>
 			</div>

@@ -7,6 +7,7 @@ const apis = {
 	defaultIndiaDataUri: '//api.covid19india.org/v4',
 	indiaAllDataUri: '/data.json',
 	usaCountiesUri: '/jhucsse/counties',
+	vaccinesUri: '/vaccine',
 };
 
 export default apis;
