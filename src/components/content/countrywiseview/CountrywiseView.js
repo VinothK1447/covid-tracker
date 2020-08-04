@@ -1,5 +1,5 @@
-import React from 'react';
-import DetailedCard from '../../hoc/DetailedCard';
+import React, { lazy } from 'react';
+const DetailedCard = lazy(() => import('../../hoc/DetailedCard'));
 
 function CountrywiseView(props) {
 	const countryDetail =

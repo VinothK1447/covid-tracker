@@ -1,8 +1,8 @@
-import React, { useRef } from 'react';
+import React, { useRef, lazy } from 'react';
 import strings from '../../config/strings';
 import ReactTooltip from 'react-tooltip';
-import SelectedStateDetails from './SelectedStateDetails';
 // import Chart from '../charts/Chart';
+const SelectedStateDetails = lazy(() => import('./SelectedStateDetails'));
 
 function DetailDataDisplay(props) {
 	let { displayData, country } = props;
@@ -550,6 +550,7 @@ function DetailDataDisplay(props) {
 					</div>
 				</div>
 				<div className='container-right' ref={stateSectionEl}>
+					{/* <Chart countryCode={countryCode} displayData={dataObj} /> */}
 					{props.selectedState ? (
 						<SelectedStateDetails
 							chSortData={(e) => props.chSortData(e)}

@@ -13,7 +13,6 @@ class Chart extends Component {
 		var defaultMap = 'usaAlbersLow';
 		var currentMap = defaultMap;
 		var title = '';
-		// var displayData = this.props.displayData;
 		if (am4geodata_data_countries2[this.props.countryCode] !== undefined) {
 			currentMap =
 				am4geodata_data_countries2[this.props.countryCode]['maps'][0];
@@ -31,9 +30,21 @@ class Chart extends Component {
 			currentMap +
 			'.json';
 		chart.geodataSource.events.on('parseended', function (ev) {
+			for (let i = 0; i < ev.target.data.features.length; i++) {
+				for (let j in this.props.displayData) {
+					if (
+						this.props.displayData[j].stateName.includes(
+							ev.target.data.features[i].properties.name
+						)
+					) {
+						console.log('Props match');
+					}
+				}
+			}
+		});
+		chart.geodataSource.events.on('ended', function (ev) {
 			var data = [];
-			console.log(ev.target.data.features);
-			for (var i = 0; i < ev.target.data.features.length; i++) {
+			for (let i = 0; i < ev.target.data.features.length; i++) {
 				data.push({
 					id: ev.target.data.features[i].id,
 					value: 123,
@@ -42,6 +53,7 @@ class Chart extends Component {
 
 			polygonSeries.data = data;
 		});
+
 		chart.maxZoomLevel = 1;
 		chart.seriesContainer.draggable = false;
 		chart.seriesContainer.resizable = false;

@@ -1,10 +1,5 @@
-import React, { Component } from 'react';
+import React, { Component, lazy } from 'react';
 import { connect } from 'react-redux';
-
-import Card from '../hoc/Card';
-import TypeAheadSelect from '../hoc/TypeAheadSelect';
-import CountrywiseView from './countrywiseview/CountrywiseView';
-
 import { getOverallData } from '../../redux/actions/OverallDataAction';
 import {
 	getAllCountriesData,
@@ -13,6 +8,10 @@ import {
 } from '../../redux/actions/CountriesAction';
 import Utils from '../../utils/Utils';
 import strings from '../../config/strings';
+
+const Card = lazy(() => import('../hoc/Card'));
+const TypeAheadSelect = lazy(() => import('../hoc/TypeAheadSelect'));
+const CountrywiseView = lazy(() => import('./countrywiseview/CountrywiseView'));
 
 class Content extends Component {
 	componentDidMount() {

@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, lazy } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Header from '../header/Header';
-import Navbar from '../hoc/Navbar';
-import Footer from '../footer/Footer';
 
 import { getVaccinesData } from '../../redux/actions/VaccineAction';
 import Utils from '../../utils/Utils';
 import ReactTooltip from 'react-tooltip';
+
+const Header = lazy(() => import('../header/Header'));
+const Navbar = lazy(() => import('../hoc/Navbar'));
+const Footer = lazy(() => import('../footer/Footer'));
 
 function Vaccines() {
 	const dispatch = useDispatch();

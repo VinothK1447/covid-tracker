@@ -1,7 +1,4 @@
-import React, { Component } from 'react';
-import Header from '../header/Header';
-import Footer from '../footer/Footer';
-import DetailDataDisplay from './DetailDataDisplay';
+import React, { Component, lazy } from 'react';
 
 import { connect } from 'react-redux';
 import {
@@ -10,7 +7,11 @@ import {
 	updateSelectedState,
 	sortChDataByRequest,
 } from '../../redux/actions/DetailDataAction';
-import Navbar from '../hoc/Navbar';
+
+const Header = lazy(() => import('../header/Header'));
+const Navbar = lazy(() => import('../hoc/Navbar'));
+const Footer = lazy(() => import('../footer/Footer'));
+const DetailDataDisplay = lazy(() => import('./DetailDataDisplay'));
 
 class DetailsIndia extends Component {
 	componentDidMount() {
