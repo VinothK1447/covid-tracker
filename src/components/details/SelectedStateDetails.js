@@ -1,50 +1,37 @@
-import React from 'react';
-import Utils from '../../utils/Utils';
-import strings from '../../config/strings';
-import CountUp from 'react-countup';
-import ReactTooltip from 'react-tooltip';
+import React from 'react'
+import Utils from '../../utils/Utils'
+import strings from '../../config/strings'
+import CountUp from 'react-countup'
+import ReactTooltip from 'react-tooltip'
 
 function DistrictDetails(props) {
 	// console.log(props);
 	const frameDisplay = (data) => {
-		const { stateName, districts, meta } = data;
+		const { stateName, districts, meta } = data
 
 		const metaDataMarkup = meta ? (
 			<div key={meta.population} className='state-meta'>
 				<div>
-					<label htmlFor='lastUpdated'>
-						{strings['en'].lastUpdated}
-					</label>
+					<label htmlFor='lastUpdated'>{strings['en'].lastUpdated}</label>
 					<span>
-						{Utils.formatDate(new Date(meta.last_updated))}{' '}
-						{Utils.dateTimeDiff(new Date(meta.last_updated))}
+						{Utils.formatDate(new Date(meta.last_updated))} {Utils.dateTimeDiff(new Date(meta.last_updated))}
 					</span>
 				</div>
 				<div>
-					<label htmlFor='population'>
-						{strings['en'].population}
-					</label>{' '}
+					<label htmlFor='population'>{strings['en'].population}</label>{' '}
 					<span>
-						<CountUp
-							start={0}
-							end={meta.population}
-							separator=','
-						/>
+						<CountUp start={0} end={meta.population} separator=',' />
 					</span>
 				</div>
 				<div>
-					<a
-						href={meta.tested.source}
-						target='_blank'
-						rel='noopener noreferrer'
-					>
+					<a href={meta.tested.source} target='_blank' rel='noopener noreferrer'>
 						{strings.en.sourceLbl}
 					</a>
 				</div>
 			</div>
 		) : (
 			''
-		);
+		)
 
 		const districtsDataMarkup = districts ? (
 			<div key='districts-container' className='state-districts'>
@@ -58,20 +45,13 @@ function DistrictDetails(props) {
 							<div className='table-header'>
 								<div
 									className={
-										props.chSortBy === 'districts' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'districts' && props.chSortType === 'asc'
 											? 'table-cell district-cell asc'
-											: props.chSortBy === 'districts' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'districts' && props.chSortType === 'desc'
 											? 'table-cell district-cell desc'
 											: 'table-cell district-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'districts' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'districts' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='districts'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -79,20 +59,13 @@ function DistrictDetails(props) {
 								</div>
 								<div
 									className={
-										props.chSortBy === 'confirmed' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'confirmed' && props.chSortType === 'asc'
 											? 'table-cell asc'
-											: props.chSortBy === 'confirmed' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'confirmed' && props.chSortType === 'desc'
 											? 'table-cell desc'
 											: 'table-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'confirmed' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'confirmed' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='confirmed'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -101,20 +74,13 @@ function DistrictDetails(props) {
 								</div>
 								<div
 									className={
-										props.chSortBy === 'active' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'active' && props.chSortType === 'asc'
 											? 'table-cell asc'
-											: props.chSortBy === 'active' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'active' && props.chSortType === 'desc'
 											? 'table-cell desc'
 											: 'table-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'active' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'active' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='active'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -122,20 +88,13 @@ function DistrictDetails(props) {
 								</div>
 								<div
 									className={
-										props.chSortBy === 'recovered' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'recovered' && props.chSortType === 'asc'
 											? 'table-cell asc'
-											: props.chSortBy === 'recovered' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'recovered' && props.chSortType === 'desc'
 											? 'table-cell desc'
 											: 'table-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'recovered' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'recovered' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='recovered'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -144,20 +103,13 @@ function DistrictDetails(props) {
 								</div>
 								<div
 									className={
-										props.chSortBy === 'deceased' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'deceased' && props.chSortType === 'asc'
 											? 'table-cell asc'
-											: props.chSortBy === 'deceased' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'deceased' && props.chSortType === 'desc'
 											? 'table-cell desc'
 											: 'table-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'deceased' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'deceased' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='deceased'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -168,111 +120,63 @@ function DistrictDetails(props) {
 							{Object.keys(districts).map((district, idx) => {
 								return (
 									<div className='table-row' key={idx}>
-										<div className='table-cell district-cell'>
-											{district}{' '}
-											{districts[district].meta &&
-											districts[district].meta
-												.population ? (
-												<span
-													data-tip={`${
-														strings.en.population
-													}: ${Utils.formatNumber(
-														districts[district].meta
-															.population
-													)}`}
-													data-multiline={true}
-													className='info-icon'
-												>
-													<ReactTooltip />
-												</span>
-											) : (
-												''
-											)}
-										</div>
-										<div className='table-cell'>
-											{districts[district].total
-												.confirmed || 0}{' '}
-											{districts[district].delta &&
-											districts[district].delta
-												.confirmed ? (
-												districts[district].delta
-													.confirmed ? (
-													<span className='up confirmed'>
-														{
-															districts[district]
-																.delta.confirmed
-														}
-													</span>
-												) : (
-													<span className='down confirmed'>
-														{
-															districts[district]
-																.delta.confirmed
-														}
-													</span>
-												)
-											) : (
-												''
-											)}
-										</div>
-										<div className='table-cell'>
-											{districts[district].total.active ||
-												0}{' '}
-										</div>
-										<div className='table-cell'>
-											{districts[district].total
-												.recovered || 0}{' '}
-											{districts[district].delta &&
-											districts[district].delta
-												.recovered ? (
-												districts[district].delta
-													.recovered ? (
-													<span className='up recovered'>
-														{
-															districts[district]
-																.delta.recovered
-														}
-													</span>
-												) : (
-													<span className='down recovered'>
-														{
-															districts[district]
-																.delta.recovered
-														}
-													</span>
-												)
-											) : (
-												''
-											)}
-										</div>
-										<div className='table-cell'>
-											{districts[district].total
-												.deceased || 0}{' '}
-											{districts[district].delta &&
-											districts[district].delta
-												.deceased ? (
-												districts[district].delta
-													.deceased ? (
-													<span className='up deceased'>
-														{
-															districts[district]
-																.delta.deceased
-														}
-													</span>
-												) : (
-													<span className='down deceased'>
-														{
-															districts[district]
-																.delta.deceased
-														}
-													</span>
-												)
-											) : (
-												''
-											)}
-										</div>
+										{districts[district].total && (
+											<>
+												<div className='table-cell district-cell'>
+													{district}{' '}
+													{districts[district].meta && districts[district].meta.population ? (
+														<span
+															data-tip={`${strings.en.population}: ${Utils.formatNumber(districts[district].meta.population)}`}
+															data-multiline={true}
+															className='info-icon'
+														>
+															<ReactTooltip />
+														</span>
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{districts[district].total.confirmed || 0}{' '}
+													{districts[district].delta && districts[district].delta.confirmed ? (
+														districts[district].delta.confirmed ? (
+															<span className='up confirmed'>{districts[district].delta.confirmed}</span>
+														) : (
+															<span className='down confirmed'>{districts[district].delta.confirmed}</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>{districts[district].total.active || 0} </div>
+												<div className='table-cell'>
+													{districts[district].total.recovered || 0}{' '}
+													{districts[district].delta && districts[district].delta.recovered ? (
+														districts[district].delta.recovered ? (
+															<span className='up recovered'>{districts[district].delta.recovered}</span>
+														) : (
+															<span className='down recovered'>{districts[district].delta.recovered}</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+												<div className='table-cell'>
+													{districts[district].total.deceased || 0}{' '}
+													{districts[district].delta && districts[district].delta.deceased ? (
+														districts[district].delta.deceased ? (
+															<span className='up deceased'>{districts[district].delta.deceased}</span>
+														) : (
+															<span className='down deceased'>{districts[district].delta.deceased}</span>
+														)
+													) : (
+														''
+													)}
+												</div>
+											</>
+										)}
 									</div>
-								);
+								)
 							})}
 						</div>
 					</div>
@@ -280,10 +184,10 @@ function DistrictDetails(props) {
 			</div>
 		) : (
 			''
-		);
+		)
 
 		if (stateName && districts && meta) {
-			document.querySelector('.state-section').classList.remove('hide');
+			document.querySelector('.state-section').classList.remove('hide')
 		}
 		return (
 			<>
@@ -291,8 +195,8 @@ function DistrictDetails(props) {
 				{metaDataMarkup}
 				{districtsDataMarkup}
 			</>
-		);
-	};
+		)
+	}
 	const frameUSCountiesDisplay = (countiesData) => {
 		const countiesMarkup = countiesData ? (
 			<div key='districts-container' className='state-districts'>
@@ -306,20 +210,13 @@ function DistrictDetails(props) {
 							<div className='table-header'>
 								<div
 									className={
-										props.chSortBy === 'county' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'county' && props.chSortType === 'asc'
 											? 'table-cell district-cell asc'
-											: props.chSortBy === 'county' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'county' && props.chSortType === 'desc'
 											? 'table-cell district-cell desc'
 											: 'table-cell district-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'county' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'county' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='county'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -327,20 +224,13 @@ function DistrictDetails(props) {
 								</div>
 								<div
 									className={
-										props.chSortBy === 'confirmed' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'confirmed' && props.chSortType === 'asc'
 											? 'table-cell asc'
-											: props.chSortBy === 'confirmed' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'confirmed' && props.chSortType === 'desc'
 											? 'table-cell desc'
 											: 'table-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'confirmed' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'confirmed' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='confirmed'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -349,20 +239,13 @@ function DistrictDetails(props) {
 								</div>
 								<div
 									className={
-										props.chSortBy === 'deaths' &&
-										props.chSortType === 'asc'
+										props.chSortBy === 'deaths' && props.chSortType === 'asc'
 											? 'table-cell asc'
-											: props.chSortBy === 'deaths' &&
-											  props.chSortType === 'desc'
+											: props.chSortBy === 'deaths' && props.chSortType === 'desc'
 											? 'table-cell desc'
 											: 'table-cell'
 									}
-									data-ch-sort-type={
-										props.chSortBy === 'deaths' &&
-										props.chSortType === 'asc'
-											? 'desc'
-											: 'asc'
-									}
+									data-ch-sort-type={props.chSortBy === 'deaths' && props.chSortType === 'asc' ? 'desc' : 'asc'}
 									data-ch-sort-by='deaths'
 									onClick={(e) => props.chSortData(e)}
 								>
@@ -373,17 +256,11 @@ function DistrictDetails(props) {
 							{countiesData.map((district, idx) => {
 								return (
 									<div className='table-row' key={idx}>
-										<div className='table-cell district-cell'>
-											{district.county}
-										</div>
-										<div className='table-cell'>
-											{district.stats.confirmed}
-										</div>
-										<div className='table-cell'>
-											{district.stats.deaths}
-										</div>
+										<div className='table-cell district-cell'>{district.county}</div>
+										<div className='table-cell'>{district.stats.confirmed}</div>
+										<div className='table-cell'>{district.stats.deaths}</div>
 									</div>
-								);
+								)
 							})}
 						</div>
 					</div>
@@ -391,13 +268,13 @@ function DistrictDetails(props) {
 			</div>
 		) : (
 			''
-		);
+		)
 		if (props.selectedState.state) {
-			document.querySelector('.state-section').classList.remove('hide');
+			document.querySelector('.state-section').classList.remove('hide')
 		}
 
-		return <>{countiesMarkup}</>;
-	};
+		return <>{countiesMarkup}</>
+	}
 
 	const renderStateDetails =
 		props && props.country === 'india'
@@ -406,17 +283,13 @@ function DistrictDetails(props) {
 				: ''
 			: props.selectedStateCounties.length
 			? frameUSCountiesDisplay(props.selectedStateCounties)
-			: '';
+			: ''
 
 	return (
-		<div
-			key='selected-state-details'
-			className='state-section hide'
-			id='state-section'
-		>
+		<div key='selected-state-details' className='state-section hide' id='state-section'>
 			{renderStateDetails}
 		</div>
-	);
+	)
 }
 
-export default DistrictDetails;
+export default DistrictDetails
