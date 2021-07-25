@@ -20,3 +20,7 @@ Your app is ready to be deployed!
 ### `npm run eject`
 
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+### `firebase deploy`
+
+Deploys into firebase and hosts the site.
